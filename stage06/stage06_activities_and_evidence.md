@@ -2,7 +2,7 @@
 
 Complete this one group record. Link actual issues, diffs, tests and reviews; avoid copying entire histories. Blank fields are intentional. Duplicate rows as needed. Use synthetic data only. Every member records their own meaningful contribution. Do not invent results, reviews or Copilot use.
 
-- Group/tutorial: [response]
+- Group/tutorial: [Mon 2:30 - 4:30 Group 1]
 - Members, GitHub usernames and cohorts: [response]
 - Repository URL: [response]
 - Starting SHA: [response]
@@ -33,13 +33,13 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 
 ## B Commit quality
 
-| Original example | Strong or Weak | Reason |
-|---|---|---|
-| changes | [select] | [response] |
-| final version | [select] | [response] |
-| Add patient search by ID | [select] | [response] |
-| fix stuff | [select] | [response] |
-| Prevent cancellation of completed appointments | [select] | [response] |
+| Original example                               | Strong or Weak | Reason                                                                                                                |
+| ---------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| changes                                        | [Weak]         | [Extremely inspecific and broad, does not adequetly convey the scope of the commit.]                                  |
+| final version                                  | [Weak]         | [Software can be constantly changing, pegging the label "Final Version" to just one release can often be inaccurate.] |
+| Add patient search by ID                       | [Strong]       | [Specific and expains exactly whar was changed.]                                                                      |
+| fix stuff                                      | [Weak]         | [Extremely inspecific and broad, does not adequetly convey the scope of the commit.]                                  |
+| Prevent cancellation of completed appointments | [Strong]       | [Specific and expains exactly whar was changed.]                                                                      |
 
 ## C Over scoped PR review
 
@@ -64,23 +64,23 @@ GitHub Copilot says: "Looks good; tests pass."
 
 ## E Team workflow agreement
 
-| Practice | Team agreement |
-|---|---|
-| Branch naming | [response] |
-| Commit message convention | [response] |
-| PR size | [response] |
-| Another-member review requirement | [response] |
-| Merge rule | [response] |
-| Significant Copilot disclosure rule | [response] |
+| Practice                            | Team agreement |
+| ----------------------------------- | -------------- |
+| Branch naming                       | [response]     |
+| Commit message convention           | [response]     |
+| PR size                             | [response]     |
+| Another-member review requirement   | [response]     |
+| Merge rule                          | [response]     |
+| Significant Copilot disclosure rule | [response]     |
 
 ## F Issue and backlog index
 
 Create at least two focused issues. Add a linked practitioner-lookup issue or an explicit supporting criterion with the tutor if needed to cover all three service targets.
 
-| Issue link | Requirement | Owner | Acceptance criteria or precise link | Status |
-|---|---|---|---|---|
-| [issue 1] | [response] | [response] | [response] | [response] |
-| [issue 2] | [response] | [response] | [response] | [response] |
+| Issue link | Requirement | Owner      | Acceptance criteria or precise link | Status     |
+| ---------- | ----------- | ---------- | ----------------------------------- | ---------- |
+| [issue 1]  | [response]  | [response] | [response]                          | [response] |
+| [issue 2]  | [response]  | [response] | [response]                          | [response] |
 
 ## G Pull request evidence
 
