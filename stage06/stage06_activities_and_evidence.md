@@ -2,9 +2,9 @@
 
 Complete this one group record. Link actual issues, diffs, tests and reviews; avoid copying entire histories. Blank fields are intentional. Duplicate rows as needed. Use synthetic data only. Every member records their own meaningful contribution. Do not invent results, reviews or Copilot use.
 
-- Group/tutorial: [Mon 2:30 - 4:30 Group 1]
+- Group/tutorial: Mon 2:30 - 4:30 Group 1
 - Members, GitHub usernames and cohorts: [response]
-- Repository URL: [response]
+- Repository URL: https://github.com/SomeKidWithCode/ST-Assignment-3
 - Starting SHA: [response]
 
 ## A Requirement to issue activities
@@ -33,13 +33,13 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 
 ## B Commit quality
 
-| Original example                               | Strong or Weak | Reason                                                                                                                |
-| ---------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------- |
-| changes                                        | [Weak]         | [Extremely inspecific and broad, does not adequetly convey the scope of the commit.]                                  |
-| final version                                  | [Weak]         | [Software can be constantly changing, pegging the label "Final Version" to just one release can often be inaccurate.] |
-| Add patient search by ID                       | [Strong]       | [Specific and expains exactly whar was changed.]                                                                      |
-| fix stuff                                      | [Weak]         | [Extremely inspecific and broad, does not adequetly convey the scope of the commit.]                                  |
-| Prevent cancellation of completed appointments | [Strong]       | [Specific and expains exactly whar was changed.]                                                                      |
+| Original example                               | Strong or Weak | Reason                                                                                                              |
+| ---------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------- |
+| changes                                        | Weak           | Extremely inspecific and broad, does not adequetly convey the scope of the commit.                                  |
+| final version                                  | Weak           | Software can be constantly changing, pegging the label "Final Version" to just one release can often be inaccurate. |
+| Add patient search by ID                       | Strong         | Specific and expains exactly whar was changed.                                                                      |
+| fix stuff                                      | Weak           | Extremely inspecific and broad, does not adequetly convey the scope of the commit.                                  |
+| Prevent cancellation of completed appointments | Strong         | Specific and expains exactly whar was changed.                                                                      |
 
 ## C Over scoped PR review
 
