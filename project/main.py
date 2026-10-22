@@ -1,6 +1,8 @@
 """Run the supplied demo or the Stage 9 interactive menu."""
 
 
+print("Hello World!")
+
 import argparse
 
 from smartcare.console import run_demo, run_menu
