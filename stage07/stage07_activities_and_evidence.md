@@ -24,19 +24,24 @@ For each requirement, propose one positive test, one negative test and the key a
 For each, select Strong for stated behaviour or Weak/unclear and explain why. State the behaviour and limits.
 
 `assert True`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Useless
+Why: Assert will always be true
 
 `assert appointment is not None`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Strong
+Why: Clearly defines that appointment should not be None.
 
 `assert appointment.status == AppointmentStatus.CANCELLED`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Medium
+Why: Defines that status should be canceled. But, it should be noted that `appointment.status != AppointmentStatus.BOOKED` and `appointment.status == AppointmentStatus.CANCELLED` are different and should be used in different circumstances.
 
 `assert len(results) > 0`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Weak
+Why: 
 
 `assert data_store.find_appointment('A1') is appointment`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: 
+Why: 
 
 ### Activity 3 Boundary thinking
 
@@ -51,14 +56,14 @@ GitHub Copilot generates five tests, all of which pass. Two only assert that obj
 |---|---|---|
 | 1 | [response] | [response] |
 | 2 | [response] | [response] |
-| 3 | [response] | [response] |
+| 3 | Assert True does nothing | Test actually tests something |
 | 4 | [response] | [response] |
 | 5 | [response] | [response] |
 
 ### Tutorial exit question
 
 Why can 100% code coverage coexist with poor software verification?
-[response]
+100% code coverage can coexist with poor software verification because code coverage only states that the code runs and is used. It does NOT state the code itself is useful. For example, you could be calling checks or statements that don't realistically do anything.
 
 ## B Requirement to Test Traceability Matrix
 
