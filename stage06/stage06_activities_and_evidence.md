@@ -157,10 +157,10 @@ Repeat per member. Include only categories that describe actual work; write not 
 - Implementation: [work and evidence]
 - Testing: [work and evidence]
 - Review: [work and evidence]
-- Issue refinement: [work and evidence]
+- Issue refinement: Created issue for FR-06
 - Design and responsibility discussion: [work and evidence]
 - Debugging or integration: [work and evidence]
-- Documentation or team support: [work and evidence]
+- Documentation or team support: Most of stage 6, as well as organisation
 
 - Member: Kael
 - Implementation: [work and evidence]
