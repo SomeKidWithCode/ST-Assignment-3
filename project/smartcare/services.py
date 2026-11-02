@@ -35,7 +35,7 @@ class PatientService:
 		a blank/invalid ID.
 		"""
 
-		if len(patient_id) == 0 or patient_id is not str:
+		if len(patient_id) == 0 or type(patient_id) is not str:
 			raise ValueError('Patient ID is blank or invalid')
 		
 		patient = self.data_store.find_patient(patient_id)
@@ -76,7 +76,7 @@ class PractitionerService:
 		a blank/invalid ID.
 		"""
 
-		if len(practitioner_id) == 0 or practitioner_id is not str:
+		if len(practitioner_id) == 0 or type(practitioner_id) is not str:
 			raise ValueError('Practitioner ID is blank or invalid')
 		
 		practitioner = self.data_store.find_practitioner(practitioner_id)
