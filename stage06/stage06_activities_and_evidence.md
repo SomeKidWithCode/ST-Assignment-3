@@ -4,10 +4,10 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 
 - Group/tutorial: Mon 2:30 - 4:30 Group 1
 - Members, GitHub usernames and cohorts:
-    Kael - SomeKidWithCode - UG
-    Ash - Ash-Salt08 - UG
-    Bailey -  - UG
-    Sushil -  - UG
+  - Kael (SomeKidWithCode), UG
+  - Ash (Ash-Salt08), UG
+  - Bailey (Sparkachu), UG
+  - Sushil (Sushil-Bhattarai-101), UG
 - Repository URL: https://github.com/SomeKidWithCode/ST-Assignment-3
 - Starting SHA: a38dbc262ff7127122cffc81be4cb86dcbb4799f
 
@@ -16,24 +16,24 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 ### FR-02 Patient Search
 
 - Title: Patient Search Feature
-- Context: [response]
-- Requirement: System needs to be able to search patient records for a certain patient
-- Acceptance criteria: [response]
+- Context: Practitioners and admin staff need to search for patients to see their name
+- Requirement: System needs to be able to search patient records for a certain patient.
+- Acceptance criteria: AC-02.1 / 02.2: Known patient lookup returns that patient; unknown patient reports absence.
 - Scope: services.py
-- Definition of Done: [response]
+- Definition of Done: Search is able to retreive patient information when given the patient ID, and will return a relevant error when no match is found.
 - Owner: Kael
 - Actual issue link: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/6
 
 ### FR-06 Appointment Cancellation with FR-07 retained history
 
 - Title: Appointment Cancellation with Retained Cancelled Appointments
-- Context: [response]
-- Requirement: [response]
-- Acceptance criteria: [response]
+- Context: Appointments may need to be cancelled due to patients needing to reschedule, or due to an error when making the booking.
+- Requirement: System needs to mark appointments as cancelled
+- Acceptance criteria: AC-05.1 / 05.2 / 05.3: Scheduled cancellation changes status; cancelled history remains retrievable this session; repeated cancellation is rejected.
 - Scope: services.py
-- Definition of Done: [response]
+- Definition of Done: User is able to mark a specified appointment as cancelled, and can still retreive a cancelled appointment.
 - Owner: Kael
-- Actual issue link: [response]
+- Actual issue link: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/7
 
 ## B Commit quality
 
@@ -43,7 +43,7 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 | final version                                  | Weak           | Software can be constantly changing, pegging the label "Final Version" to just one release can often be inaccurate. |
 | Add patient search by ID                       | Strong         | Specific and expains exactly whar was changed.                                                                      |
 | fix stuff                                      | Weak           | Extremely inspecific and broad, does not adequetly convey the scope of the commit.                                  |
-| Prevent cancellation of completed appointments | Strong         | Specific and expains exactly whar was changed.                                                                      |
+| Prevent cancellation of completed appointments | Strong         | Specific and expains exactly what was changed.                                                                      |
 
 ## C Over scoped PR review
 
@@ -58,37 +58,55 @@ A cancellation PR also renames unrelated patient fields, restructures unrelated 
 
 GitHub Copilot says: "Looks good; tests pass."
 
-- Missing evidence: [response]
-- Follow-up review question 1: [response]
-- Follow-up review question 2: [response]
-- Follow-up review question 3: [response]
-- Follow-up review question 4: [response]
-- Follow-up review question 5: [response]
+- Missing evidence: What tests pass and why
+- Follow-up review question 1: Which tests were run?
+- Follow-up review question 2: Which tests passed/failed?
+- Follow-up review question 3: Is there any room for improvement?
+- Follow-up review question 4: Is there any additional tests we should run?
+- Follow-up review question 5: Is it ready to commit?
 - Additional questions if useful: [response]
 
 ## E Team workflow agreement
 
-| Practice                            | Team agreement |
-| ----------------------------------- | -------------- |
-| Branch naming                       | Each person gets their own branch to work on     |
-| Commit message convention           | [response]     |
-| PR size                             | [response]     |
-| Another-member review requirement   | [aren't the groups locked?]     |
-| Merge rule                          | merging is only done when your section is finished or you need to make changes to the codebase     |
-| Significant Copilot disclosure rule | [response]     |
+| Practice                            | Team agreement                                                                                 |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Branch naming                       | Each person gets their own branch to work on                                                   |
+| Commit message convention           | Consise, highlighting major changes                                                            |
+| PR size                             | Major, stage completion, or handover to other to complete                                      |
+| Another-member review requirement   | We are not currently accepting members.                                                        |
+| Merge rule                          | merging is only done when your section is finished or you need to make changes to the codebase |
+| Significant Copilot disclosure rule | Just don't use copilot                                                                         |
 
 ## F Issue and backlog index
 
 Create at least two focused issues. Add a linked practitioner-lookup issue or an explicit supporting criterion with the tutor if needed to cover all three service targets.
 
-| Issue link | Requirement | Owner      | Acceptance criteria or precise link | Status     |
-| ---------- | ----------- | ---------- | ----------------------------------- | ---------- |
-| [issue 1]  | [response]  | [response] | [response]                          | [response] |
-| [issue 2]  | [response]  | [response] | [response]                          | [response] |
+| Issue link                                                  | Requirement                                                              | Owner | Acceptance criteria or precise link | Status |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------ | ----- | ----------------------------------- | ------ |
+| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/6 | System needs to be able to search patient records for a certain patient. | Kael  | [response]                          | Closed |
+| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/7 | System needs to mark appointments as cancelled                           | Ash   | [response]                          | Closed |
 
 ## G Pull request evidence
 
 Repeat this block per PR. Record actual events, not planned approvals.
+
+- PR link and title: [response]
+- Linked issue and requirement: [response]
+- Feature branch: [response]
+- Changed behaviour: [response]
+- Meaningful commits: [links]
+- Test command, directory and observed result: [response]
+- Another-member reviewer: [response]
+- Human observations recorded before Copilot: [link and time]
+- Requirement, responsibilities, test assertions and unrelated-scope checks: [response]
+- Key feedback: [response]
+- Author response/change and verification: [response]
+- Reviewer recheck and approval: [link]
+- Merge outcome and SHA: [response]
+- Significant Copilot assistance: [summary or none]
+- Linked issue closure: [response]
+- Each member updated main: [member and confirmation]
+- Integrated verification after merge: [command, directory, result and code SHA]
 
 - PR link and title: [response]
 - Linked issue and requirement: [response]
@@ -135,7 +153,34 @@ Record meaningful required use, not every trivial completion. Repeat per signifi
 
 Repeat per member. Include only categories that describe actual work; write not applicable where appropriate. Pairing or mentoring can be supported by a short corroborated note.
 
-- Member: [response]
+- Member: Ash
+- Implementation: [work and evidence]
+- Testing: [work and evidence]
+- Review: [work and evidence]
+- Issue refinement: Created issue for FR-06
+- Design and responsibility discussion: [work and evidence]
+- Debugging or integration: [work and evidence]
+- Documentation or team support: Most of stage 6, as well as organisation
+
+- Member: Kael
+- Implementation: [work and evidence]
+- Testing: [work and evidence]
+- Review: [work and evidence]
+- Issue refinement: [work and evidence]
+- Design and responsibility discussion: [work and evidence]
+- Debugging or integration: [work and evidence]
+- Documentation or team support: [work and evidence]
+
+- Member: Sushil
+- Implementation: [work and evidence]
+- Testing: [work and evidence]
+- Review: [work and evidence]
+- Issue refinement: [work and evidence]
+- Design and responsibility discussion: [work and evidence]
+- Debugging or integration: [work and evidence]
+- Documentation or team support: [work and evidence]
+
+- Member: Bailey
 - Implementation: [work and evidence]
 - Testing: [work and evidence]
 - Review: [work and evidence]
@@ -148,7 +193,7 @@ Repeat per member. Include only categories that describe actual work; write not 
 
 Why is a high commit count not necessarily evidence of strong contribution?
 
-[response]
+There is no minimum amount of changes needed to make a commit. A well organised commit makes only 1, significant change with sufficient detail in the comment. A high commit account can be casued by a large amount of smaller, lower quality commits, indicating poor contribution to a project.
 
 ## L Stage 6 formative questions
 
@@ -157,67 +202,52 @@ Why is a high commit count not necessarily evidence of strong contribution?
 Version control is a method for managing different versions of a program.
 Such version differences my arise from experienmenting with new APIs, optimisations or feature additions
 
-
 2. Why is a feature branch useful?
 
 Feature branches are useful because it allows you to work on one specific feature of a system, without interference.
 Let's say you want to work on a new feature, say an optimised data storage system.
 A feature branch allows you to test the feature with the current system's specs.
 
-
 3. What makes a commit a good engineering commit?
-
-
-
 
 4. What is a pull request?
 
-A pull request is a request to pull changes from branch to branch.
+A pull request is a query to grab changes from branch to branch.
 If you make a branch and make changes on that branch, you will then need to request your changes on that branch to be pulled into the main branch.
 
-
 5. What is the purpose of code review?
-
-
-
 
 6. What does a Git diff show?
 
 A Git diff shows lines, characters and files that have added or deleted.
 It's a way to view what has changed from commits/pulls
 
-
 7. What is a Definition of Done?
 
 A Definition of Done is a description of something that must be complete for a task to be marked as done.
 For example, a Definition of Done for an appointment registeration function might be that
-* appointment is created
-* appointment is checked for conflicting times/days/practitioners, etc
-* appointment is either registered or rejected
-Basically a set of tests the task has to be pass to be considered a finished task
 
+- appointment is created
+- appointment is checked for conflicting times/days/practitioners, etc
+- appointment is either registered or rejected
+  Basically a set of tests the task has to be pass to be considered a finished task
 
 8. What is the appropriate role of GitHub Copilot in pull-request review?
 
 An appropriate role of Github Copilot would be to summarize the changes made in the incoming pull request vs the main branch/whatever branch it's being pulled to.
 Pull requests can be large and change a lot of files and code. So, creating a summary can be a useful and appropriate task.
 
-
 9. Why should individual contribution not be judged only by commit count?
 
 Because commits can be very small. You only need to add a space to the end of a line for it to be considered a commit-able thing.
 Instead, commits should be judged on what was changed and by how much. This gives a better view as to what the commit actually changes.
 
-
 10. What is the Stage 6 engineering rule?
-
-
-
 
 ## M Completion and handover
 
-- Starting SHA: [response]
-- Final Stage 6 code SHA: [response]
+- Starting SHA: a38dbc262ff7127122cffc81be4cb86dcbb4799f
+- Final Stage 6 code SHA:
 - Test command: [response]
 - Working directory: [response]
 - Observed result: [response]
