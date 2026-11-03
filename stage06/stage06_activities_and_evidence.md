@@ -64,18 +64,18 @@ GitHub Copilot says: "Looks good; tests pass."
 - Follow-up review question 3: Is there any room for improvement?
 - Follow-up review question 4: Is there any additional tests we should run?
 - Follow-up review question 5: Is it ready to commit?
-- Additional questions if useful: [response]
+- Additional questions if useful: N/A
 
 ## E Team workflow agreement
 
-| Practice                            | Team agreement                                                                                 |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Branch naming                       | Each person gets their own branch to work on                                                   |
-| Commit message convention           | Consise, highlighting major changes                                                            |
-| PR size                             | Major, stage completion, or handover to other to complete                                      |
-| Another-member review requirement   | We are not currently accepting members.                                                        |
-| Merge rule                          | merging is only done when your section is finished or you need to make changes to the codebase |
-| Significant Copilot disclosure rule | Just don't use copilot                                                                         |
+| Practice                            | Team agreement                                                                                                                  |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Branch naming                       | Each person gets their own branch to work on.                                                                                   |
+| Commit message convention           | Consise, highlighting major changes.                                                                                            |
+| PR size                             | Major, stage completion, or handover to other to complete.                                                                      |
+| Another-member review requirement   | We are not currently accepting members.                                                                                         |
+| Merge rule                          | Merging is only done when your section is finished or you need to make changes to the codebase.                                 |
+| Significant Copilot disclosure rule | We have agreed not to use copilot in order to ensure quality and academic integrity, as well as generally simplify the project. |
 
 ## F Issue and backlog index
 
@@ -91,11 +91,11 @@ Create at least two focused issues. Add a linked practitioner-lookup issue or an
 Repeat this block per PR. Record actual events, not planned approvals.
 
 - PR link and title: Pull Request Evidence- #8
-https://github.com/SomeKidWithCode/ST-Assignment-3/pull/8
+  https://github.com/SomeKidWithCode/ST-Assignment-3/pull/8
 - Linked issue and requirement: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/6
 - Feature branch: Kael-Branch
 - Changed behaviour: Includes changes to SmartCare services and tests, with a commit implementing patient and practitioner lookup functions.
-- Meaningful commits: f979050 — 	5 commits (including patient/practitioner lookup) Implemented patient and practitioner finding functions in services.py. 
+- Meaningful commits: f979050 — 5 commits (including patient/practitioner lookup) Implemented patient and practitioner finding functions in services.py.
 - Test command, directory and observed result: [response]
 - Another-member reviewer: Ash-Salt08
 - Human observations recorded before Copilot: [link and time]
@@ -176,7 +176,7 @@ Repeat per member. Include only categories that describe actual work; write not 
 
 Why is a high commit count not necessarily evidence of strong contribution?
 
-There is no minimum amount of changes needed to make a commit. A well organised commit makes only 1, significant change with sufficient detail in the comment. 
+There is no minimum amount of changes needed to make a commit. A well organised commit makes only 1, significant change with sufficient detail in the comment.
 A high commit account can be casued by a large amount of smaller, lower quality commits, indicating poor contribution to a project.
 
 ## L Stage 6 formative questions
@@ -194,7 +194,7 @@ A feature branch allows you to test the feature with the current system's specs.
 
 3. What makes a commit a good engineering commit?
 
-A good engineering commit is focused, meaningful and easy to understand. 
+A good engineering commit is focused, meaningful and easy to understand.
 It describes a specific change, avoids unrelated modifications and ideally leaves the code in a working, testable state.
 
 4. What is a pull request?
@@ -204,7 +204,7 @@ If you make a branch and make changes on that branch, you will then need to requ
 
 5. What is the purpose of code review?
 
-Code review helps another developer check that a change meets requirements, follows the intended architecture, includes relevant tests and does not introduce defects or unrelated changes. 
+Code review helps another developer check that a change meets requirements, follows the intended architecture, includes relevant tests and does not introduce defects or unrelated changes.
 It also shares knowledge across the team.
 
 6. What does a Git diff show?
@@ -239,7 +239,7 @@ Instead, commits should be judged on what was changed and by how much. This give
 - Starting SHA: a38dbc262ff7127122cffc81be4cb86dcbb4799f
 - Final Stage 6 code SHA:
 - Test command: [response]
-- Working directory: [response]
+- Working directory: project/
 - Observed result: [response]
 - PR and another-member reviewer: [links]
 - Unresolved issue or none: [response]
