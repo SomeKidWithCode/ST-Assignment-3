@@ -149,9 +149,3 @@ def test_domain_cancellation_and_guard() -> None:
     with pytest.raises(ValueError):
         appointment.cancel()
     assert appointment.status is AppointmentStatus.CANCELLED
-
-def test_finding_pracitioners_and_patients() -> None:
-    pass
-
-def test_appointment_cancellation() -> None:
-    pass

@@ -1,8 +1,13 @@
 # Stage 7 Testing and Verification Record
 
-Group/tutorial: [complete]  Members/cohorts: [complete]
+Group/tutorial: Mon 2:30 - 4:30 Group 1
+Members/cohorts: 
+    Kael (SomeKidWithCode), UG
+    Ash (Ash-Salt08), UG
+    Bailey (Sparkachu), UG
+    Sushil (Sushil-Bhattarai-101), UG
 Requirements baseline: SmartCare A3 Requirements Baseline 2026, revision 2.
-Use the same project/. Link actual evidence; keep responses concise. Blank fields are for your group. Copy rows only as needed.
+Use the same project. Link actual evidence; keep responses concise. Blank fields are for your group. Copy rows only as needed.
 
 All Assignment 3 stage materials are provided from the beginning. Complete this stage only after the previous applicable stage has been integrated, verified and recorded. Use this supplied record in stage07/ in your EXISTING repository. Preserve project/, all earlier tests, records and responses. Do not download another starter or copy staff solutions.
 
@@ -14,9 +19,9 @@ For each requirement, propose one positive test, one negative test and the key a
 
 | Requirement | Positive test | Negative test | Key assertion |
 |---|---|---|---|
-| FR-01 Register patient | [response] | [response] | [response] |
+| FR-01 Register patient | Register new patient | Register already existing patient | If the patient is already registered |
 | FR-05 Prevent practitioner conflict | [response] | [response] | [response] |
-| FR-06 Cancel appointment | [response] | [response] | [response] |
+| FR-06 Cancel appointment | Cancel schudeled appointment | Cancel canceled appointment | If the appointment is not schudeled |
 | FR-07 Retain cancelled history | [response] | [response] | [response] |
 
 ### Activity 2 Strong or weak assertion
@@ -24,19 +29,24 @@ For each requirement, propose one positive test, one negative test and the key a
 For each, select Strong for stated behaviour or Weak/unclear and explain why. State the behaviour and limits.
 
 `assert True`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Useless
+Why: Assert will always be true
 
 `assert appointment is not None`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Medium
+Why: While it is to-the-point, only if you should be expecting something is not None, say from a fetching function, should this be checked for.
 
 `assert appointment.status == AppointmentStatus.CANCELLED`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Medium
+Why: Defines that status should be canceled. But, it should be noted that `appointment.status != AppointmentStatus.BOOKED` and `appointment.status == AppointmentStatus.CANCELLED` are different and should be used in different circumstances.
 
 `assert len(results) > 0`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Weak
+Why: If this is testing for if the something isn't blank, this would not work for spaces. Five spaces still have a length of 5. You need to trim the results to make sure it removes extra whitespace.
 
 `assert data_store.find_appointment('A1') is appointment`
-Judgement: [Strong for stated behaviour / Weak/unclear]  Why: [response]
+Judgement: Useless
+Why: `find_appointment` shouldn't be returning anything other than `Appointment` or `None`/an error. You should be able to infer what something returns by the method name.
 
 ### Activity 3 Boundary thinking
 
@@ -51,14 +61,14 @@ GitHub Copilot generates five tests, all of which pass. Two only assert that obj
 |---|---|---|
 | 1 | [response] | [response] |
 | 2 | [response] | [response] |
-| 3 | [response] | [response] |
+| 3 | Assert True does nothing | Test actually tests something |
 | 4 | [response] | [response] |
 | 5 | [response] | [response] |
 
 ### Tutorial exit question
 
 Why can 100% code coverage coexist with poor software verification?
-[response]
+100% code coverage can coexist with poor software verification because code coverage only states that the code runs and is used. It does NOT state the code itself is useful. For example, you could be calling checks or statements that don't realistically do anything.
 
 ## B Requirement to Test Traceability Matrix
 
@@ -183,28 +193,39 @@ Record actual work in test design, implementation, review, traceability, diagnos
 [response]
 
 3. What is a unit test?
-[response]
+A unit test is test that tests a particular part of the system without dependency on the rest of the system.
+Like a function or method.
 
 4. What is a pytest fixture?
-[response]
+A pytest fixture would be a constant used in testing python code.
+In our case, the foundation method in test_starter.py defines testing data to use.
+It ensures that the testing data used accross tests is consistent.
 
 5. What is parametrisation in pytest?
-[response]
+Parametrisation is a functionality of pytest that allows you to run a testing function multiple times with different inputs.
+This allows you to catch parameter edge cases.
 
 6. What is regression testing?
-[response]
+Regression testing is a form of testing where you run a set of tests, change something, then run the tests again.
+Basically, it's a method of testing where the tests that have passed previously continue to pass as you add/change things.
+This includes adding tests to test things you add/change.
 
 7. What does code coverage tell us, and what does it not prove?
-[response]
+Code coverage describes how much of your code runs.
+Things like if statements, function usage, variable variability, etc.
+It's a way of measuring how much of your code is actually doing something.
+It's also a method for finding dead code, or code that isn't used, or checks that don't need to be run.
+
+However, it doesn't tell you if that code you wrote can be improved or condensed. 
 
 8. What makes an assertion weak?
-[response]
+A weak assertion is one that doesn't prove anything or doesn't measure a change or condition.
 
 9. What is the appropriate role of GitHub Copilot as a test assistant?
-[response]
+(Nothing. I don't want to use it.)
 
 10. What is the Stage 7 engineering rule?
-[response]
+
 
 ## O Stage Completion
 
