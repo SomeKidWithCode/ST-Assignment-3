@@ -81,10 +81,10 @@ GitHub Copilot says: "Looks good; tests pass."
 
 Create at least two focused issues. Add a linked practitioner-lookup issue or an explicit supporting criterion with the tutor if needed to cover all three service targets.
 
-| Issue link                                                  | Requirement                                                              | Owner | Acceptance criteria or precise link | Status |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------ | ----- | ----------------------------------- | ------ |
-| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/6 | System needs to be able to search patient records for a certain patient. | Kael  | [response]                          | Closed |
-| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/7 | System needs to mark appointments as cancelled                           | Ash   | [response]                          | Closed |
+| Issue link                                                  | Requirement                                                              | Owner | Acceptance criteria or precise link                                                                                                                  | Status |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------ | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/6 | System needs to be able to search patient records for a certain patient. | Kael  | AC-02.1 / 02.2: Known patient lookup returns that patient; unknown patient reports absence.                                                          | Closed |
+| https://github.com/SomeKidWithCode/ST-Assignment-3/issues/7 | System needs to mark appointments as cancelled                           | Ash   | AC-05.1 / 05.2 / 05.3: Scheduled cancellation changes status; cancelled history remains retrievable this session; repeated cancellation is rejected. | Closed |
 
 ## G Pull request evidence
 
