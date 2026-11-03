@@ -10,3 +10,4 @@ __pycache__/
 .stage8-verify-*/
 .vs
 .vscode
+prepare_debugging.py
