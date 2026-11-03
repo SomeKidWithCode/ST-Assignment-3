@@ -15,98 +15,58 @@ from smartcare.services import (
     PractitionerService,
 )
 
+from test_starter import foundation
 
-def test_finding_pracitioners_and_patients() -> None:
+
+def test_finding_patients() -> None:
     '''Test patient storage finding'''
-    patient_store = PatientService(SmartCareDataStore())
-
-    patient_store.register_patient(
-        "Zero",
-        "John"
-    )
-
-    patient_zero = patient_store.find_patient("Zero")
-
-    assert patient_zero is not None
-
-    patient_one = None
-
+    data_store, patient, practitioner, appointment_service = foundation()
+   
+    patient_alex = data_store.find_patient("P1")
+    assert patient_alex is not None
+   
+    patient_steve = None
     try:
-        patient_one = patient_store.find_patient("One")
+       patient_steve = data_store.find_patient("P2")
     except:
-        print("Patient with ID \'One\' correctly could not be found")
+       print("Patient with ID \'P2\' correctly could not be found")
+    assert patient_steve is None
 
-    assert patient_one is None
 
+def test_finding_pracitioners() -> None:
+    '''Test practition storage finding'''
+    data_store, patient, practitioner, appointment_service = foundation()
 
-    '''Test patient storage finding'''
-    practitioner_store = PractitionerService(SmartCareDataStore())
+    practitioner_taylor = data_store.find_practitioner("D1")
+    assert practitioner_taylor is not None
 
-    practitioner_store.register_practitioner(
-        "Alpha",
-        "Joe",
-        "Quantum Physics"
-    )
-
-    practitioner_zero = practitioner_store.find_practitioner("Alpha")
-
-    assert practitioner_zero is not None
-
-    practitioner_one = None
-    
+    practitioner_swift = None
     try:
-        practitioner_one = practitioner_store.find_practitioner("One")
+        practitioner_swift = data_store.find_practitioner("D2")
     except:
-        print("Practitioner with ID \'One\' correctly could not be found")
-    
-    assert practitioner_one is None
-
+        print("Practitioner with ID \'D2\' correctly could not be found")
+    assert practitioner_swift is None
 
 
 
 def test_appointment_cancellation() -> None:
-    patient_store = PatientService(SmartCareDataStore())
-    
-    patient = patient_store.register_patient(
-        "Zero",
-        "John"
-    )
+    data_store, patient, practitioner, appointment_service = foundation()
 
-    practitioner_store = PractitionerService(SmartCareDataStore())
-    
-    practitioner = practitioner_store.register_practitioner(
-        "Alpha",
-        "Joe",
-        "Quantum Physics"
-    )
-
-
-    data_store = SmartCareDataStore()
-
-    data_store.add_patient(patient)
-    data_store.add_practitioner(practitioner)
-
-    appt_server = AppointmentService(data_store)
-
-    appt = appt_server.book_appointment(
-        "1",
-        "Zero",
-        "Alpha",
+    appointment = appointment_service.book_appointment(
+        "A1",
+        "P1",
+        "D1",
         datetime(2026, 11, 19, 7)
     )
 
-    assert appt.status == AppointmentStatus.SCHEDULED
-
-    appt.cancel()
-
-    assert appt.status == AppointmentStatus.CANCELLED
+    assert appointment.status == AppointmentStatus.SCHEDULED
+    appointment.cancel()
+    assert appointment.status == AppointmentStatus.CANCELLED
 
     cancelled_twice = False
-
     try:
-        appt.cancel()
+        appointment.cancel()
         cancelled_twice = True
     except:
         print("Correctly prevented double cancel")
-
     assert not cancelled_twice
