@@ -18,24 +18,25 @@ from smartcare.services import (
 from test_starter import foundation
 
 
-def test_finding_pracitioners_and_patients() -> None:
+def test_finding_patients() -> None:
     '''Test patient storage finding'''
-
     data_store, patient, practitioner, appointment_service = foundation()
-
+   
     patient_alex = data_store.find_patient("P1")
     assert patient_alex is not None
-
+   
     patient_steve = None
     try:
-        patient_steve = data_store.find_patient("P2")
+       patient_steve = data_store.find_patient("P2")
     except:
-        print("Patient with ID \'P2\' correctly could not be found")
+       print("Patient with ID \'P2\' correctly could not be found")
     assert patient_steve is None
 
 
-
+def test_finding_pracitioners() -> None:
     '''Test practition storage finding'''
+    data_store, patient, practitioner, appointment_service = foundation()
+
     practitioner_taylor = data_store.find_practitioner("D1")
     assert practitioner_taylor is not None
 
@@ -45,7 +46,6 @@ def test_finding_pracitioners_and_patients() -> None:
     except:
         print("Practitioner with ID \'D2\' correctly could not be found")
     assert practitioner_swift is None
-
 
 
 
@@ -60,17 +60,13 @@ def test_appointment_cancellation() -> None:
     )
 
     assert appointment.status == AppointmentStatus.SCHEDULED
-
     appointment.cancel()
-
     assert appointment.status == AppointmentStatus.CANCELLED
 
     cancelled_twice = False
-
     try:
         appointment.cancel()
         cancelled_twice = True
     except:
         print("Correctly prevented double cancel")
-
     assert not cancelled_twice

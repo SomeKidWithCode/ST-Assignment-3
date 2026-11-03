@@ -91,7 +91,7 @@ class AppointmentService:
 	def __init__(self, data_store: SmartCareDataStore) -> None:
 		"""Use the shared store to coordinate appointment operations."""
 		self.data_store = data_store
-		self.cancelled_appointments = []
+		self.cancelled_appointments: list[Appointment] = []
 
 	def book_appointment(
 		self,

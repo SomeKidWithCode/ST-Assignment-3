@@ -1,5 +1,5 @@
-REM Quick util file that executes all tests on Windows 10/11
-REM Does not work on any OS other than windows
+@REM Quick util file that executes all tests on Windows 10/11
+@REM Does not work on any OS other than windows
 
 @echo off
 
