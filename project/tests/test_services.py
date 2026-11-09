@@ -60,7 +60,7 @@ def test_appointment_cancellation() -> None:
     )
 
     assert appointment.status == AppointmentStatus.SCHEDULED
-    appointment.cancel()
+    appointment_service.cancel_appointment(appointment.appointment_id)
     assert appointment.status == AppointmentStatus.CANCELLED
 
     cancelled_twice = False
@@ -70,3 +70,6 @@ def test_appointment_cancellation() -> None:
     except:
         print("Correctly prevented double cancel")
     assert not cancelled_twice
+
+    appointments = data_store.list_appointments()
+    assert not appointments.__contains__(appointment)
