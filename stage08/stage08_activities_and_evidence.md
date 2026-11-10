@@ -143,27 +143,32 @@ python -m pytest -vv / 1 test failure / practitioner conflict detection failure
 - Expected behaviour and requirement: System detects appointment conflicts and throws an error
 - Minimal synthetic reproduction steps: Create two bookings that have the same times and practitioners
 - Meaningful failing test path/name and exact relevant failure:
-    * Failing test is 
     * `test_conflict_rule_and_different_practitioner()` on line `119` in file `test_starter.py`
     * `Failed: DID NOT RAISE ValueError`
 - Human hypothesis and intended checks: see E, F8-01.
 - Supported root cause and inspected code/runtime evidence:
-* Root cause: With `appointment.practitioner.practitioner_id != practitioner_id`, `!=` is supposed to be a `==`
-* Inspected code: See 'F8-01 Inspected Code.png'
+    * Root cause: With `appointment.practitioner.practitioner_id != practitioner_id`, `!=` is supposed to be a `==`
+    * Inspected code: See `F8-01 Inspected Code.png`
 - Smallest justified fix / diff / why other behaviour is preserved:
-changed `!=` to `==`.
-Other behaviour is preserved because the rest of the if statement correct compares time, appointment status and the appointment to ignore.
-- Repair SHA / focused verification result: [complete]
+    * Changed `!=` to `==`.
+    * Other behaviour is preserved because the rest of the if statement correct compares time, appointment status and the appointment to ignore.
+- Repair SHA / focused verification result: dda2f19a9f7d2715a5b9641132deae068304422a / See `F8-01 proof of now passing test.png`
 
 ## D. F8-02 diagnosis and repair
 
-- Symptom / observed behaviour: [complete]
-- Expected behaviour and requirement: [complete]
-- Minimal synthetic reproduction steps: [complete]
-- Meaningful failing test path/name and exact relevant failure: [complete]
+- Symptom / observed behaviour: Appointments are not removed from the appointments list
+- Expected behaviour and requirement: Appointments are removed from the appointments list and stored in a different list
+- Minimal synthetic reproduction steps: Create an apppointment, cancel it, then check if it's in the appointment list
+- Meaningful failing test path/name and exact relevant failure:
+    * `test_appointment_cancellation` on line `52` in file `test_services.py`
+    * `AssertionError: assert not True`
 - Human hypothesis and intended checks: see E, F8-02.
-- Supported root cause and inspected code/runtime evidence: [complete after diagnosis]
-- Smallest justified fix / diff / why other behaviour is preserved: [complete]
+- Supported root cause and inspected code/runtime evidence:
+    * Root cause: No call to remove the appointment from the appointment list is made
+    * Inspected code: See `F8-01 Inspected Code.png`
+- Smallest justified fix / diff / why other behaviour is preserved:
+    * Added a item deletion line after the appointment cancelation
+    * Other behaviour is preserved because the rest of the statement correctly cancels the booking and adds the canceled booking to a canceled bookings list.
 - Repair SHA / focused verification result: [complete]
 
 ## E. Human-first hypotheses
@@ -172,14 +177,16 @@ Complete both entries BEFORE Copilot. C/D supply observed/expected/reproduction/
 
 ### F8-01 human entry
 Likely cause and why plausible:
-`has_practitioner_conflict` would return a false value if two appointments had the same pracitioner ID.
+`has_practitioner_conflict` would return false if two appointments had the same pracitioner ID.
 This appears to be the opposite of what we want, being a true values if two appointments had the same pracitioner ID.
 Evidence intended to inspect / competing explanation / discriminating check: ???
 Member and saved sequence/time or commit showing this preceded consultation: [complete]
 
 ### F8-02 human entry
-Likely cause and why plausible: [complete]
-Evidence intended to inspect / competing explanation / discriminating check: [complete]
+Likely cause and why plausible:
+`cancel_appointment` in `services.py` does remove the canceled appointment from the appointments list.
+This makes sense given the appointment could still be found in the appointments list.
+Evidence intended to inspect / competing explanation / discriminating check: ???
 Member and saved sequence/time or commit showing this preceded consultation: [complete]
 
 ## F. GitHub Copilot prompts, findings and human decisions
@@ -204,9 +211,9 @@ Final human conclusion and comparison with initial hypothesis: [complete]
 
 | Checkpoint | Code SHA or precise diff | Command and working directory | Actual result and artefact reference |
 |---|---|---|---|
-| F8-01 before repair | bd4121e2855e23496147cb67759e851b1a035297 | `python -m pytest -vv` and `project/` | [complete] |
-| F8-01 after repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
-| F8-02 before repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
+| F8-01 before repair | bd4121e2855e23496147cb67759e851b1a035297 | `python -m pytest -vv` and `project/` | `Proof of baseline error 2.png` |
+| F8-01 after repair | dda2f19a9f7d2715a5b9641132deae068304422a | `python -m pytest -vv` and `project/` | `F8-01 proof of now passing test.png` |
+| F8-02 before repair | dda2f19a9f7d2715a5b9641132deae068304422a | `python -m pytest -vv` and `project/` | `F8-02 remaining assertion error.png` |
 | F8-02 after repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
 | Full suite after both repairs, before refactor | [complete] | `python -m pytest -vv` and `project/` | [complete] |
 

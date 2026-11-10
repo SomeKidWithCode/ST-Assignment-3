@@ -160,6 +160,9 @@ class AppointmentService:
 		# This already raises a ValueError if trying to cancel an already cancelled appointment
 		appointment.cancel()
 
+		# Remove the appointment from the booked appointments lists
+		self.data_store._appointments.__delitem__(appointment_id)
+
 		# Add the appointment to the canceled appointments list
 		self.cancelled_appointments.append(appointment)
 		
