@@ -100,9 +100,9 @@ This means that just changing the code immediately have an issue happens doesn't
 
 - Stage 7 code SHA and requirement baseline: 986c5445532ffd1d85e88639b6b6f34b84e15b2bbfc1882511a96938c3b641f6
 - Baseline test command / working directory / observed result / evidence: 
-    * python -m pytest -vv
-    * project/
-    * FAILED tests/test_starter.py::test_conflict_rule_and_different_practitioner - Failed: DID NOT RAISE ValueError
+    * `python -m pytest -vv`
+    * `project/`
+    * `FAILED tests/test_starter.py::test_conflict_rule_and_different_practitioner - Failed: DID NOT RAISE ValueError`
     * See 'Proof of baseline error 1.png' and 'Proof of baseline error 2.png'
 - Clean preparation SHA if a record-only commit followed Stage 7: [complete]
 - Branch and preparer / how teammates obtained this branch:
@@ -229,9 +229,14 @@ Smell and exact location: Using 'magic strings' to check enums / `data_store.py`
 Small proposed structural change / why justified: change to using enum value directly / changes to the enums could create issues as they would not change with the magic string.
 External behaviour to preserve / relevant tests: usage of enum status's / `test_finding_appointments` and `test_conflict_rule_and_different_practitioner`
 Before result: see G, full passing suite.
-Actual change / diff / separate refactor SHA: [complete]
-Focused and full after-refactor commands / working directory / results / evidence: [complete]
-Result — accepted, revised or rejected / reason / behaviour-preservation conclusion: [complete]
+Actual change / diff / separate refactor SHA:
+* `appointment.status.value == "scheduled"` to `appointment.status == AppointmentStatus.SCHEDULED`
+* `appointment.status.value != "cancelled"` to `appointment.status != AppointmentStatus.CANCELLED`
+* SHA: 87cb5f2258f53848baf0e34cdf30dad0c19b8bb8
+Focused and full after-refactor commands / working directory / results / evidence:
+`python -m pytest -vv` / `project/` / changes applied without issue, preserving behaviour / `See After enum usage fix with tests still passing.png`
+Result — accepted, revised or rejected / reason / behaviour-preservation conclusion:
+Accepted, proper enum usage and removal of magic strings / behaviour preserved
 
 ## I. Git, human review and integration
 
@@ -302,8 +307,8 @@ Response:
 - [X] Passing Stage 7 SHA and safe preparation details recorded.
 - [X] Both defects reproduced with meaningful failing tests.
 - [ ] Both human hypotheses recorded before Copilot; actual suggestions evaluated with evidence.
-- [ ] Supported causes and minimal repairs explained; focused and full regression results recorded.
-- [ ] One genuine refactor verified under passing before/after tests.
+- [X] Supported causes and minimal repairs explained; focused and full regression results recorded.
+- [X] One genuine refactor verified under passing before/after tests.
 - [ ] Human PR review, feedback resolution and integrated retest recorded.
 - [X] Tutorial, three reflections and ten formative responses complete.
 - [X] Local recovery metadata excluded from submitted source.
