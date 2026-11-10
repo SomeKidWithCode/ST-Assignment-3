@@ -45,7 +45,7 @@ Expected behaviour: Booking with same time/practitioner fails with error
 Observed behaviour: Booking with same time/practitioner does not fail and is created without issue
 Minimal reproduction: Register two appointments with the same practitioner and time
 Hypothesis: Issue with the booking conflict checking function
-Evidence: See 'Proof of baseline error.png'
+Evidence: See 'Proof of baseline error 1.png' and 'Proof of baseline error 2.png'
 
 ### A.3 Test defect or product defect
 A test expects cancelled appointments to be deleted, but FR-07 says history must be retained. What should be changed? Explain why. Also decide whether a test expecting different practitioners at the same time to conflict reflects AC-04.2. Do not assume every failing test is correct.
@@ -103,7 +103,7 @@ This means that just changing the code immediately have an issue happens doesn't
     * python -m pytest -vv
     * project/
     * FAILED tests/test_starter.py::test_conflict_rule_and_different_practitioner - Failed: DID NOT RAISE ValueError
-    * See 'Proof of baseline error.png'
+    * See 'Proof of baseline error 1.png' and 'Proof of baseline error 2.png'
 - Clean preparation SHA if a record-only commit followed Stage 7: [complete]
 - Branch and preparer / how teammates obtained this branch:
     * debug/stage08, Pranav
@@ -143,11 +143,16 @@ python -m pytest -vv / 1 test failure / practitioner conflict detection failure
 - Expected behaviour and requirement: System detects appointment conflicts and throws an error
 - Minimal synthetic reproduction steps: Create two bookings that have the same times and practitioners
 - Meaningful failing test path/name and exact relevant failure:
+    * Failing test is 
     * `test_conflict_rule_and_different_practitioner()` on line `119` in file `test_starter.py`
     * `Failed: DID NOT RAISE ValueError`
 - Human hypothesis and intended checks: see E, F8-01.
-- Supported root cause and inspected code/runtime evidence: [complete after diagnosis]
-- Smallest justified fix / diff / why other behaviour is preserved: [complete]
+- Supported root cause and inspected code/runtime evidence:
+* Root cause: With `appointment.practitioner.practitioner_id != practitioner_id`, `!=` is supposed to be a `==`
+* Inspected code: See 'F8-01 Inspected Code.png'
+- Smallest justified fix / diff / why other behaviour is preserved:
+changed `!=` to `==`.
+Other behaviour is preserved because the rest of the if statement correct compares time, appointment status and the appointment to ignore.
 - Repair SHA / focused verification result: [complete]
 
 ## D. F8-02 diagnosis and repair
@@ -166,8 +171,10 @@ python -m pytest -vv / 1 test failure / practitioner conflict detection failure
 Complete both entries BEFORE Copilot. C/D supply observed/expected/reproduction/test; retain those initial facts and link them here.
 
 ### F8-01 human entry
-Likely cause and why plausible: [complete]
-Evidence intended to inspect / competing explanation / discriminating check: [complete]
+Likely cause and why plausible:
+`has_practitioner_conflict` would return a false value if two appointments had the same pracitioner ID.
+This appears to be the opposite of what we want, being a true values if two appointments had the same pracitioner ID.
+Evidence intended to inspect / competing explanation / discriminating check: ???
 Member and saved sequence/time or commit showing this preceded consultation: [complete]
 
 ### F8-02 human entry
@@ -197,7 +204,7 @@ Final human conclusion and comparison with initial hypothesis: [complete]
 
 | Checkpoint | Code SHA or precise diff | Command and working directory | Actual result and artefact reference |
 |---|---|---|---|
-| F8-01 before repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
+| F8-01 before repair | bd4121e2855e23496147cb67759e851b1a035297 | `python -m pytest -vv` and `project/` | [complete] |
 | F8-01 after repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
 | F8-02 before repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
 | F8-02 after repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
@@ -218,7 +225,9 @@ Result — accepted, revised or rejected / reason / behaviour-preservation concl
 
 ## I. Git, human review and integration
 
-Issues for both defects / refactor scope and owners: [complete]
+Issues for both defects / refactor scope and owners:
+F8-01: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/14 / `SmartCareDataStore` in `data_store.py` / SomeKidWithCode (Kael (u3334502))
+F8-02: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/15 / `` in ``
 Branch / prepared, repair and refactor checkpoints: [link B/C/D/H]
 PR link and another member's reviewer identity: [complete]
 Key human feedback, difference from Copilot findings and response/outcome: [complete]
