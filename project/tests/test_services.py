@@ -47,6 +47,22 @@ def test_finding_pracitioners() -> None:
         print("Practitioner with ID \'D2\' correctly could not be found")
     assert practitioner_swift is None
 
+def test_finding_appointments() -> None:
+    data_store, patient, practitioner, appointment_service = foundation()
+    
+    appointment = appointment_service.book_appointment(
+        "A1",
+        "P1",
+        "D1",
+        datetime(2026, 11, 19, 7)
+    )
+
+    found_appointment = data_store.find_appointment("A1")
+
+    assert found_appointment is not None
+    assert found_appointment.status == AppointmentStatus.SCHEDULED
+    assert found_appointment == appointment
+
 
 
 def test_appointment_cancellation() -> None:

@@ -169,7 +169,7 @@ python -m pytest -vv / 1 test failure / practitioner conflict detection failure
 - Smallest justified fix / diff / why other behaviour is preserved:
     * Added a item deletion line after the appointment cancelation
     * Other behaviour is preserved because the rest of the statement correctly cancels the booking and adds the canceled booking to a canceled bookings list.
-- Repair SHA / focused verification result: [complete]
+- Repair SHA / focused verification result: 1400a8f40ed4dc0e9a98d15ebe929df8dfd40cbc / See `Proof of both passing tests.png`
 
 ## E. Human-first hypotheses
 
@@ -214,17 +214,20 @@ Final human conclusion and comparison with initial hypothesis: [complete]
 | F8-01 before repair | bd4121e2855e23496147cb67759e851b1a035297 | `python -m pytest -vv` and `project/` | `Proof of baseline error 2.png` |
 | F8-01 after repair | dda2f19a9f7d2715a5b9641132deae068304422a | `python -m pytest -vv` and `project/` | `F8-01 proof of now passing test.png` |
 | F8-02 before repair | dda2f19a9f7d2715a5b9641132deae068304422a | `python -m pytest -vv` and `project/` | `F8-02 remaining assertion error.png` |
-| F8-02 after repair | [complete] | `python -m pytest -vv` and `project/` | [complete] |
-| Full suite after both repairs, before refactor | [complete] | `python -m pytest -vv` and `project/` | [complete] |
+| F8-02 after repair | 1400a8f40ed4dc0e9a98d15ebe929df8dfd40cbc | `python -m pytest -vv` and `project/` | `Proof of both passing tests.png` |
+| Full suite after both repairs, before refactor | 1400a8f40ed4dc0e9a98d15ebe929df8dfd40cbc | `python -m pytest -vv` and `project/` | `Proof of both passing tests.png` |
 
-Explain how the assertions detect each relevant incorrect result and protect previous behaviour: [complete]
-Unrelated failures investigated / resolution: [complete or not applicable with reason]
+Explain how the assertions detect each relevant incorrect result and protect previous behaviour:
+* For F8-01, assertations detect the relevant incorrect result because a conflicting booking should throw a ValueError.
+* For F8-02, assertations detect the relevant incorrect result because it is check whether the booking is still in the bookings list after being canceled.
+* The previous behaviour is still protected by other assertations.
+Unrelated failures investigated / resolution: N/A, no other failing tests
 
 ## H. Refactoring decision and before/after verification
 
-Smell and exact location: [complete]
-Small proposed structural change / why justified: [complete before editing]
-External behaviour to preserve / relevant tests: [complete]
+Smell and exact location: Using 'magic strings' to check enums / `data_store.py` on line `94` and `112`.
+Small proposed structural change / why justified: change to using enum value directly / changes to the enums could create issues as they would not change with the magic string.
+External behaviour to preserve / relevant tests: usage of enum status's / `test_finding_appointments` and `test_conflict_rule_and_different_practitioner`
 Before result: see G, full passing suite.
 Actual change / diff / separate refactor SHA: [complete]
 Focused and full after-refactor commands / working directory / results / evidence: [complete]
@@ -234,7 +237,7 @@ Result — accepted, revised or rejected / reason / behaviour-preservation concl
 
 Issues for both defects / refactor scope and owners:
 F8-01: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/14 / `SmartCareDataStore` in `data_store.py` / SomeKidWithCode (Kael (u3334502))
-F8-02: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/15 / `` in ``
+F8-02: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/15 / `AppointmentService` in `services.py` / SomeKidWithCode (Kael (u3334502))
 Branch / prepared, repair and refactor checkpoints: [link B/C/D/H]
 PR link and another member's reviewer identity: [complete]
 Key human feedback, difference from Copilot findings and response/outcome: [complete]
@@ -302,8 +305,8 @@ Response:
 - [ ] Supported causes and minimal repairs explained; focused and full regression results recorded.
 - [ ] One genuine refactor verified under passing before/after tests.
 - [ ] Human PR review, feedback resolution and integrated retest recorded.
-- [ ] Tutorial, three reflections and ten formative responses complete.
-- [ ] Local recovery metadata excluded from submitted source.
+- [X] Tutorial, three reflections and ten formative responses complete.
+- [X] Local recovery metadata excluded from submitted source.
 - [X] Same project and full suite ready for Stage 9 after Stage 8 integration, verification and recording.
 
 Verified integrated code SHA / result: see I.
