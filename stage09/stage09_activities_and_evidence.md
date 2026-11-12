@@ -87,8 +87,10 @@ Include registration/find, booking, conflict rejection, different-practitioner b
 ## E. GitHub Copilot review and human decisions
 
 Human design completed before AI: <!-- reference -->
-Actual prompt/context supplied: <!-- paste or accessible reference -->
-Actual response: <!-- accessible reference -->
+Actual prompt/context supplied: N/A
+Actual response: N/A
+
+To cut down on workload and ensure our work is high quality, we have not used AI for coding or designing in this assignment.
 
 | AI finding | Code/test evidence | Severity | Accept/Modify/Reject and reason | Change or no change | Actual verification |
 | ---------- | ------------------ | -------- | ------------------------------- | ------------------- | ------------------- |
