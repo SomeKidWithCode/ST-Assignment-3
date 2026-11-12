@@ -4,8 +4,12 @@ UG and PG | One evolving group project | Complete this blank record using the St
 
 All Assignment 3 stage materials are provided from the beginning. Complete this stage only after the previous applicable stage has been integrated, verified and recorded. Use this supplied record in stage08/ in your EXISTING repository. Preserve project/, all earlier tests, records and responses. Do not download another starter or copy staff solutions. The Stage 8 preparation utility is supplied or run by teaching staff when Stage 8 begins. Follow your tutor’s controlled workflow and the handout. If temporarily supplied, keep it outside the repository in a sibling Stage_8_Assets/ folder; exclude it from Git and the final submission.
 
-Group/tutorial: [complete]
-Members and UG/PG cohorts: [complete]
+- Group/tutorial: Mon 2:30 - 4:30 Group 1
+- Members, GitHub usernames and cohorts:
+  - Kael (SomeKidWithCode), UG
+  - Ash (Ash-Salt08), UG
+  - Bailey (Sparkachu), UG
+  - Sushil (Sushil-Bhattarai-101), UG
 Record owner / contribution links for each member: [complete]
 
 Use concise results and accessible artefact links rather than copying entire logs. Keep human-first entries before consulting GitHub Copilot. Link shared evidence once; do not repeat it across sections. No entries below are specimen answers or claimed results.
@@ -165,35 +169,35 @@ Each member's substantive contribution and artefact: [complete]
 
 1. What should an engineer do before changing code in response to a failure?
 
-Response: [complete]
+Response: Reproduce the error to understand why it happens, identify root cause rather than symptoms, and carefully test a solution.
 
 2. Where should expected behaviour come from during debugging?
 
-Response: [complete]
+Response: Expected behaviour should be set based on the clients requirements and needs within the program.
 
 3. What is a debugging hypothesis?
 
-Response: [complete]
+Response: A theory as to the root cause of a bug.
 
 4. What is a regression test and why is it retained?
 
-Response: [complete]
+Response: Verifying that existing working components are still working after changes have been made. They are retained to ensure functionality is protected, and previous failures do not reoccur. 
 
 5. What is meant by root cause?
 
-Response: [complete]
+Response: The "root cause" of a bug is the reason the bug occurs. This is distinct to a "symptom" which is a product of the bug, but perhaps not necessarily the bug itself.
 
 6. What is refactoring?
 
-Response: [complete]
+Response: Reformatting code to improve maintainability and readability, and does not change functionality.
 
 7. What is a swallowed exception?
 
-Response: [complete]
+Response: An ignored error. The error is not properly handled, and the program is allowed to continue on without handling the error properly.
 
 8. What is a code smell?
 
-Response: [complete]
+Response: Identified non-critical problems in a programs code, often the sort of thing that can be addressed through refactoring.
 
 9. How should GitHub Copilot-generated debugging diagnoses be treated?
 
