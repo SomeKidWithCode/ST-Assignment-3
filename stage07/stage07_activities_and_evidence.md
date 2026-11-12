@@ -20,9 +20,9 @@ For each requirement, propose one positive test, one negative test and the key a
 | Requirement | Positive test | Negative test | Key assertion |
 |---|---|---|---|
 | FR-01 Register patient | Register new patient | Register already existing patient | If the patient is already registered |
-| FR-05 Prevent practitioner conflict | Practitioner is not already assigned to the appointment at the time | Practitioner is already assigned to the appointment at the time | [response] |
+| FR-05 Prevent practitioner conflict | Practitioner is not already assigned to the appointment at the time | Practitioner is already assigned to the appointment at the time | Practitioner does not have an appointment already at that time |
 | FR-06 Cancel appointment | Cancel schudeled appointment | Cancel canceled appointment | If the appointment is not schudeled |
-| FR-07 Retain cancelled history | [response] | [response] | [response] |
+| FR-07 Retain cancelled history | Canceled appointment is retained | Canceled appointment is not retained | Appointment can still be found somewhere |
 
 ### Activity 2 Strong or weak assertion
 
@@ -30,7 +30,7 @@ For each, select Strong for stated behaviour or Weak/unclear and explain why. St
 
 `assert True`
 Judgement: Useless
-Why: Assert will always be true
+Why: Assert will always be true and tests nothing
 
 `assert appointment is not None`
 Judgement: Medium
@@ -51,7 +51,26 @@ Why: `find_appointment` shouldn't be returning anything other than `Appointment`
 ### Activity 3 Boundary thinking
 
 Design boundary or edge cases for blank identifiers, whitespace-only names, same-time practitioner bookings, cancelled appointments and invalid status transitions.
-For each input/state, expected result and supporting contract: [response]
+For each input/state, expected result and supporting contract:
+- Input: blank id
+- Expected result: error -> ID cannot be plank
+- Contract: must raise ValueError
+
+- Input: whitespace-only name
+- Expected result: error -> ID must have at least 1 non-whitespace character
+- Contract: must raise ValueError
+
+- Input: Same-time practitioner booking
+- Expected result: error -> cannot have overlapping bookings
+- Contract: must raise ValueError
+
+- Input: Appointment canceled
+- Expected result: appointment is retained
+- Contract: Cancelled appointments are retained when canceled
+
+- Input: Invalid state transition
+- Expected result: error -> for example, cannot transition from a completed appointment to a canceled one
+- Contract: Invalid state transitions are not allowed (in the case of cancelling, raise ValueError)
 
 ### Activity 4 Critique GitHub Copilot tests
 
@@ -59,16 +78,17 @@ GitHub Copilot generates five tests, all of which pass. Two only assert that obj
 
 | Candidate | What is wrong | Rewritten test intention |
 |---|---|---|
-| 1 | `not None` is not extensive enough | Test other states of the object |
-| 2 | [response] | [response] |
-| 3 | Assert True does nothing | Test actually tests something |
-| 4 | Assumes SMS notifications exist | Test if SMS notifications exist |
-| 5 | [response] | [response] |
+| 1 | `not None` is not extensive enough | Test if object is the correct one |
+| 2 | `not None` is not extensive enough | Test if passed values match returned object's values |
+| 3 | Assert True does nothing | Actually test something |
+| 4 | Assumes SMS notifications exist | Test what happens if SMS notifications are not available |
+| 5 | Assumes SMS notifications exist | Test what happens when SMS notifications are wrong/malformed |
 
 ### Tutorial exit question
 
 Why can 100% code coverage coexist with poor software verification?
 100% code coverage can coexist with poor software verification because code coverage only states that the code runs and is used. It does NOT state the code itself is useful. For example, you could be calling checks or statements that don't realistically do anything.
+Or you could be gathering info that isn't used.
 
 
 ## B Requirement to Test Traceability Matrix
@@ -326,19 +346,19 @@ Run python -m pytest from project/. Retain all accumulated tests. Record the tes
 
 | Command | Working directory | Code SHA | Passed | Failed | Failure summary | Product defect / test defect / unresolved | Evidence and interpretation |
 |---|---|---|---|---|---|---|---|
-| [complete] | [complete] | [complete] | [complete] | [complete] | [complete] | [complete] | [complete] |
+| `python -m pytest` | `project/` | 80029272a86a303d3f094471875cf9efd7106ca8 | 13 | 0 | N/A | N/A | 'Proof of all tests passing.png' |
 
 Individual test runs and changed-order independence evidence: [commands, results, links]
-Optional tutor-led demonstration notes: [optional; leave blank if not used]
+Optional tutor-led demonstration notes: N/A
 A meaningful test should detect a relevant incorrect result. Students do not have to perform the demonstration or submit failure/restoration evidence for assessment. The tutor restores the example and reruns its tests. This is not a Stage 8 fault activity.
 Requirement → test → failure/observation → diagnosis → change → verification: [concise links where applicable]
 
 ## K What the Suite Still Does Not Prove
 
-What does your test suite still not prove? [response]
-Coverage if used: [result or not used]
-Which uncovered areas matter, and why does coverage percentage alone not establish correctness? [response]
-Optional fixtures/parametrisation used and why, if any: [response or not used]
+What does your test suite still not prove? The test suite does not prove that all paths of all functions of all systems are run and produce the intended result.
+Coverage if used: Not used
+Which uncovered areas matter, and why does coverage percentage alone not establish correctness? N/A?
+Optional fixtures/parametrisation used and why, if any: Not used
 
 ## L Git and Review Evidence
 
@@ -359,10 +379,10 @@ Record actual work in test design, implementation, review, traceability, diagnos
 ## N Formative Questions
 
 1. What question does verification answer?
-[response]
+Verification ensures the system is working based on the requirements defined for it.
 
 2. What question does validation answer?
-[response]
+Validation ensures the system is working as intended for the user based on expected behaviour.
 
 3. What is a unit test?
 A unit test is test that tests a particular part of the system without dependency on the rest of the system.
@@ -371,7 +391,7 @@ Like a function or method.
 4. What is a pytest fixture?
 A pytest fixture would be a constant used in testing python code.
 In our case, the foundation method in test_starter.py defines testing data to use.
-It ensures that the testing data used accross tests is consistent.
+It ensures that the testing data used across tests is consistent.
 
 5. What is parametrisation in pytest?
 Parametrisation is a functionality of pytest that allows you to run a testing function multiple times with different inputs.
@@ -392,6 +412,7 @@ However, it doesn't tell you if that code you wrote can be improved or condensed
 
 8. What makes an assertion weak?
 A weak assertion is one that doesn't prove anything or doesn't measure a change or condition.
+Assertation is used to make sure something is in a particular state, such that a newly-created booking is scheduled.
 
 9. What is the appropriate role of GitHub Copilot as a test assistant?
 (Nothing. I don't want to use it.)
