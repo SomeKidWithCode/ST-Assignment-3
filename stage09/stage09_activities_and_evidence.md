@@ -2,7 +2,7 @@
 
 Common UG and PG record. All Assignment 3 stage materials are provided from the beginning. Complete this stage only after the previous applicable stage has been integrated, verified and recorded. Use this supplied record in stage09/ in your EXISTING repository. Preserve project/, all earlier tests, records and responses. Do not download another starter or copy staff solutions. Use the Stage 9 handout and Overview/revision 2 baseline. Keep responses concise and link accessible artefacts; do not paste entire logs or private peer ratings.
 
-Group: <!-- complete -->
+Group: Mon 2:30 - 4:30 Group 1
 Members and responsibilities: <!-- complete -->
 Stage 8 integrated SHA, command, working directory and actual result: <!-- complete -->
 
@@ -10,38 +10,38 @@ Stage 8 integrated SHA, command, working directory and actual result: <!-- compl
 
 ### A1 Session state classification
 
-| Information | Required session/domain or transient state? | Requirement or reason |
-|---|---|---|
-| Patient identity | | |
-| Appointment history | | |
-| Temporary menu choice | | |
-| Practitioner specialty | | |
-| Debug print output | | |
-| Appointment status | | |
+| Information            | Required session/domain or transient state? | Requirement or reason                                                                                                                                                            |     |
+| ---------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| Patient identity       | Required Domain                             | We keep a record of patients in order to allow staff to quickly rebook a patient without having to create a new patient ID and enter associated information.                     |     |
+| Appointment history    | Required Domain                             | It is important for practitioners to be able to see a patients appointment history, as the context may be important.                                                             |     |
+| Temporary menu choice  | Transient State                             | Storing each menu choice permanently will use a lot of space, and generally be difficult to check due to the sheer amount of choices made. The client also did not ask for this. |     |
+| Practitioner specialty | Required Domain                             | This is not temporary information and will be required for ongoing operations of the clinic.                                                                                     |     |
+| Debug print output     | Required Session                            | This should be retained through the session, but can be discarded between sessions, optionally saved permanently when needed.                                                    |     |
+| Appointment status     | Required Domain                             | It is important for all stakeholders to see the status of various appointments, and as such this data needs to be retained.                                                      |     |
 
-What is intentionally lost on exit? <!-- response -->
+What is intentionally lost on exit? Temporary menu choices, anything entered into text fields that have not been saved to appointments.
 
 ### A2 Interface and domain data plan
 
 Plan before AI. This replaces schema/key design; no database tables are required.
 
-| Function or component | Explicit inputs and types | Outputs | Responsibility and validation | Domain source / existing constraint |
-|---|---|---|---|---|
-| appointment_sort_key | | | | |
-| select_appointments | | | | |
-| Service listing | | | | |
-| Console | | | | |
+| Function or component | Explicit inputs and types                                                 | Outputs | Responsibility and validation | Domain source / existing constraint |
+| --------------------- | ------------------------------------------------------------------------- | ------- | ----------------------------- | ----------------------------------- |
+| appointment_sort_key  | appointment: Appointment                                                  |         |                               |                                     |
+| select_appointments   | appointments: list,    practitioner_id: str,<br>status: AppointmentStatus |         |                               |                                     |
+| Service listing       |                                                                           |         |                               |                                     |
+| Console               |                                                                           |         |                               |                                     |
 
 Relate patient ID/name, practitioner ID/name/specialty, and appointment ID/actual participants/date_time/status to the existing contracts: <!-- response -->
 
 ### A3 Responsibility violations
 
-| Conceptual case | Violation | Correct boundary and reason |
-|---|---|---|
-| Appointment.cancel reads input | | |
-| Service prints/reads the menu | | |
-| Query sorts its source in place | | |
-| Store prints Appointment saved | | |
+| Conceptual case                 | Violation | Correct boundary and reason                                                                |
+| ------------------------------- | --------- | ------------------------------------------------------------------------------------------ |
+| Appointment.cancel reads input  | No        | cancel function needs to read the input variable of the appointment chosen to be cancelled |
+| Service prints/reads the menu   | Yes       | Menu/UI aspects are for the user. Service does not need to read these elements             |
+| Query sorts its source in place | Yes       | Query only needs to read data, not change anything                                         |
+| Store prints Appointment saved  | No        | It is important to show the user that the appointment has been saved.                      |
 
 ### A4 Sorting comparison
 
@@ -51,23 +51,23 @@ Score-example prediction and explanation of passing the named key: <!-- response
 
 ### A5 Exit question
 
-Explain cancellation versus deletion, and checks for same-session lookup, all-status listing and SCHEDULED-only exclusion: <!-- response -->
+Explain cancellation versus deletion, and checks for same-session lookup, all-status listing and SCHEDULED-only exclusion: Cancellation differs from deletion in that cancellation is a toggle and part of appointment data, whereas deletion removes all data related to the appointment permanently.
 
 ## B. Human design and contracts
 
 Complete before GitHub Copilot. Record any interface/integrity decision and its reasoning: <!-- response -->
 
 | Requirement | Input / session data | Operation and responsible component | Expected result or error | Test / evidence |
-|---|---|---|---|---|
-| | | | | |
+| ----------- | -------------------- | ----------------------------------- | ------------------------ | --------------- |
+|             |                      |                                     |                          |                 |
 
 Cover QRY-01–04, FP-01–03, UI-01–02 and relevant FR-01–09. Explain empty versus unknown versus invalid, enum conversion, actual object identity, error handling and unchanged state on rejection: <!-- response -->
 
 ## C. Implementation and query verification
 
 | Requirement / test ID | Code location | Case and meaningful assertion | Actual result | Evidence link |
-|---|---|---|---|---|
-| | | | | |
+| --------------------- | ------------- | ----------------------------- | ------------- | ------------- |
+|                       |               |                               |               |               |
 
 Include practitioner isolation, every enum status/default all, equal-time ID tie-break, named-key reuse, repeated calls, empty/already-sorted fresh lists, unchanged source order/fields, known-empty/unknown/invalid service cases and retained history.
 
@@ -76,23 +76,25 @@ What the tests do and do not establish: <!-- response -->
 
 ## D. Integrated console and workflow evidence
 
-| Scenario / acceptance ID | Reproducible inputs / artefact | Expected result | Observed result and state check | Evidence link |
-|---|---|---|---|---|
-| UI-01 full menu workflow | | | | |
-| UI-02 invalid-input recovery | | | | |
-| Automated service workflow | | | | |
+| Scenario / acceptance ID     | Reproducible inputs / artefact | Expected result | Observed result and state check | Evidence link |
+| ---------------------------- | ------------------------------ | --------------- | ------------------------------- | ------------- |
+| UI-01 full menu workflow     |                                |                 |                                 |               |
+| UI-02 invalid-input recovery |                                |                 |                                 |               |
+| Automated service workflow   |                                |                 |                                 |               |
 
 Include registration/find, booking, conflict rejection, different-practitioner booking, cancellation, retrieval, listing/filtering, freed slot and exit; duplicate/unknown/blank IDs, malformed/impossible date, invalid status, unknown choice and repeated cancellation. Identify before/after state and subsequent successful action.
 
 ## E. GitHub Copilot review and human decisions
 
 Human design completed before AI: <!-- reference -->
-Actual prompt/context supplied: <!-- paste or accessible reference -->
-Actual response: <!-- accessible reference -->
+Actual prompt/context supplied: N/A
+Actual response: N/A
+
+To cut down on workload and ensure our work is high quality, we have not used AI for coding or designing in this assignment.
 
 | AI finding | Code/test evidence | Severity | Accept/Modify/Reject and reason | Change or no change | Actual verification |
-|---|---|---|---|---|---|
-| | | | | | |
+| ---------- | ------------------ | -------- | ------------------------------- | ------------------- | ------------------- |
+|            |                    |          |                                 |                     |                     |
 
 Responsibility check: explain how domain invariants, shared-store collections, service coordination, pure queries and console effects remain separate: <!-- response -->
 
