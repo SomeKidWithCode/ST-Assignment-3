@@ -146,13 +146,13 @@ Repeat per member. Include only categories that describe actual work; write not 
 - Documentation or team support: Most of stage 6, as well as organisation
 
 - Member: Kael
-- Implementation: [work and evidence]
-- Testing: [work and evidence]
-- Review: [work and evidence]
-- Issue refinement: [work and evidence]
-- Design and responsibility discussion: [work and evidence]
-- Debugging or integration: [work and evidence]
-- Documentation or team support: [work and evidence]
+- Implementation: I was the one that did all the implementation for all the code (I like coding).
+- Testing: Because I was the one doing the coding, I also wrote a couple tests (~5).
+- Review: In terms of PRs, I reviewed 1 properly. Specifically, it was to do with a merge conflict.
+- Issue refinement: Not quite sure what this means but I did fill in questions relating to how issue were defined.
+- Design and responsibility discussion: The majority of the code design is done based on what was required of the spec. The console was totally custom (and objectively not very good).
+- Debugging or integration: Again, as I did a lot of coding, I debugged my own code.
+- Documentation or team support: I documented code I made and also did a significant amount of team coordination (hard to prove when it's all on Discord).
 
 - Member: Sushil
 - Implementation: [work and evidence]
