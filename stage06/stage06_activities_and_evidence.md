@@ -137,13 +137,13 @@ Record meaningful required use, not every trivial completion. Repeat per signifi
 Repeat per member. Include only categories that describe actual work; write not applicable where appropriate. Pairing or mentoring can be supported by a short corroborated note.
 
 - Member: Ash
-- Implementation: [work and evidence]
-- Testing: [work and evidence]
-- Review: [work and evidence]
+- Implementation: NA
+- Testing: NA
+- Review: Stage 7
 - Issue refinement: Created issue for FR-06
-- Design and responsibility discussion: [work and evidence]
-- Debugging or integration: [work and evidence]
-- Documentation or team support: Most of stage 6, as well as organisation
+- Design and responsibility discussion: NA
+- Debugging or integration: NA
+- Documentation or team support: Stage 6 (sections A, B, C, D, E and F), stage 9 (A, E) as well as general group organisation and coordination. 
 
 - Member: Kael
 - Implementation: [work and evidence]
