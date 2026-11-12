@@ -266,59 +266,74 @@ The terminal output confirmed:
 
 There were no failed tests or errors.
 
-### Reflection (B to G)
-
-**1. Which Copilot-generated test looked convincing but was weak?**
-
-The repeated-cancellation test initially appeared sufficient because it checked whether a `ValueError` was raised. However, checking only the exception did not prove that the appointment status and cancellation history remained unchanged.
-
-**2. How was it strengthened?**
-
-The test was improved by checking the appointment's identity in the data store, its CANCELLED status, the stored appointment list and the cancellation history before and after the second cancellation attempt.
-
-**3. What does the test suite still not prove?**
-
-The test suite does not prove that every possible invalid input is handled correctly. For example, the whitespace-only ID tests do not check every possible non-string input, such as `None`. It also does not test practitioner appointment listing because that functionality belongs to a later stage and has not been implemented.
-
-### Conclusion (B to G)
-
-The Stage 7 testing work covers important SmartCare domain and service behaviours. The tests verify patient and practitioner validation, appointment construction, appointment cancellation, searching, booking conflicts and error handling.
-
-Additional student-authored tests improve the original starter evidence by checking boundary conditions and ensuring that rejected operations do not change existing records or appointment states.
-
-Copilot-generated suggestions were reviewed rather than accepted automatically. Useful tests were accepted or strengthened, while functionality belonging to Stage 9 was deferred.
-
-The final execution confirmed that all 28 tests passed successfully in 0.02 seconds. This provides evidence that the current domain, service and starter test cases work as expected.
 
 ## H GitHub Copilot Test Design
 
-Select ONE real acceptance criterion. Complete human-first fields before using Copilot. Do not require an accepted generated test.
+**Requirement:** FR-07 – Retain cancelled history.
 
-Requirement: [complete]
-Acceptance criterion: [quote]
-Behaviour to test: [complete]
-Human-first test idea/categories: [complete]
-Prompt and purpose: [complete or link]
+**Acceptance criterion:** Cancelled appointments must remain stored and their cancellation history must be retained. This test also considers the related FR-06 cancellation behaviour.
 
-For each significant candidate, copy this entry as needed:
-- Copilot test idea/candidate: [complete]
-- What it claims to verify: [complete]
-- Requirement trace: [complete]
-- Assertion quality: [complete]
-- Human critique: [complete]
-- Decision: [Accept / Modify / Reject]
-- Reason: [complete]
-- Final test reference if accepted/modified: [link or not retained]
-- Actual verification result: [complete; do not claim an unrun test passed]
+**Behaviour to test:** Verify that attempting to cancel an already cancelled appointment is rejected without changing its existing status or duplicating its cancellation history.
 
-Before accepting: traces to a requirement/criterion; can fail for the right reason; assertion checks required behaviour; no invented business rule; no unnecessary private implementation dependence. Reject/modify weak assertions, invented requirements, excessive mocking, duplicates, wrong exceptions, obsolete architecture and unnecessary dependencies.
+**Human-first test idea/categories:**
+
+- Positive: Cancel a scheduled appointment successfully.
+- Negative: Attempt to cancel the same appointment for a second time.
+- Boundary/state: Verify that the appointment remains stored, its status stays `CANCELLED`, and its cancellation history remains unchanged after the rejected attempt.
+
+**Prompt and purpose:**
+
+The following prompt was used to request an independent review from GitHub Copilot:
+
+"Review the repeated appointment cancellation behaviour in my SmartCare project. Evaluate a test in which an appointment is cancelled successfully and then cancelled again. The second cancellation should raise `ValueError`. Assess whether checking only the exception is sufficient. Consider additional assertions to verify that the appointment remains stored, its status remains `CANCELLED`, and the cancellation history is not duplicated. Link your suggestions to FR-06 and FR-07 where supported by the project requirements. Do not invent business rules, modify files or claim that unexecuted tests have passed."
+
+**Purpose:** To evaluate whether Copilot could identify weaknesses in a test that checks only an exception and suggest stronger assertions for verifying the required behaviour.
+
+### Copilot test candidate
+
+**Copilot test idea/candidate:** Test that cancelling an already cancelled appointment raises `ValueError`.
+
+**What it claims to verify:** A second cancellation attempt is rejected.
+
+**Requirement trace:** FR-06 – Cancel appointment; FR-07 – Retain cancelled history.
+
+**Assertion quality:** Checking `pytest.raises(ValueError)` verifies that the expected exception occurs, but it does not independently prove that the appointment's existing state and cancellation history remain unchanged.
+
+**Human critique:** The initial idea was useful but incomplete. The test could pass after raising the exception even if the appointment or cancellation history had been changed incorrectly.
+
+**Decision:** Modify.
+
+**Reason:** Additional assertions were needed to verify that the same appointment remained stored, its status remained `CANCELLED`, and the cancellation history was unchanged.
+
+**Final test reference if accepted/modified:** `project/tests/test_services.py` – `test_repeated_service_cancellation_preserves_state()`.
+
+**Actual verification result:** The full test suite reported 28 passed and 0 failed. The repeated-cancellation test was included in the service test file.
+
+---
 
 ## I Weak Copilot Test Reflection
 
-Which Copilot-generated test looked convincing but was weak? [response]
-Why was it weak? [response]
-How did you strengthen it? [response]
-Accepted / modified / rejected test decisions and evidence: [link actual decisions in H]
+**Which Copilot-generated test looked convincing but was weak?**
+
+The repeated-cancellation test initially looked convincing because it checked whether a `ValueError` was raised when cancelling an already cancelled appointment. However, this did not prove that the appointment's status and cancellation history remained unchanged.
+
+**Why was it weak?**
+
+It checked only the expected exception. It did not verify whether the appointment remained correctly stored or whether an extra cancellation-history entry had been created.
+
+**How did you strengthen it?**
+
+I strengthened the test by checking the appointment's identity in the data store, its `CANCELLED` status, the stored appointment list and the cancellation history before and after the second cancellation attempt.
+
+**Accepted / modified / rejected test decisions and evidence:**
+
+The repeated-cancellation test was modified and strengthened. Other useful Copilot suggestions, including checking booking conflicts and allowing rebooking after cancellation, were accepted or improved. Whitespace-only ID validation and distinguishing unknown from blank appointment IDs were also modified to check the expected exceptions and preserve existing records.
+
+The suggestion to test practitioner appointment listing was rejected or deferred because it belongs to Stage 9 and is not implemented in the current stage.
+
+The modified repeated-cancellation test is available in `project/tests/test_services.py` as `test_repeated_service_cancellation_preserves_state()`.
+
+The reported full test execution result was 28 passed and 0 failed.
 
 ## J Regression Run
 
