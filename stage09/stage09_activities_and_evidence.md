@@ -19,29 +19,29 @@ Stage 8 integrated SHA, command, working directory and actual result: <!-- compl
 | Debug print output     | Required Session                            | This should be retained through the session, but can be discarded between sessions, optionally saved permanently when needed.                                                    |     |
 | Appointment status     | Required Domain                             | It is important for all stakeholders to see the status of various appointments, and as such this data needs to be retained.                                                      |     |
 
-What is intentionally lost on exit? <!-- response -->
+What is intentionally lost on exit? Temporary menu choices, anything entered into text fields that have not been saved to appointments.
 
 ### A2 Interface and domain data plan
 
 Plan before AI. This replaces schema/key design; no database tables are required.
 
-| Function or component | Explicit inputs and types | Outputs | Responsibility and validation | Domain source / existing constraint |
-| --------------------- | ------------------------- | ------- | ----------------------------- | ----------------------------------- |
-| appointment_sort_key  |                           |         |                               |                                     |
-| select_appointments   |                           |         |                               |                                     |
-| Service listing       |                           |         |                               |                                     |
-| Console               |                           |         |                               |                                     |
+| Function or component | Explicit inputs and types                                                 | Outputs | Responsibility and validation | Domain source / existing constraint |
+| --------------------- | ------------------------------------------------------------------------- | ------- | ----------------------------- | ----------------------------------- |
+| appointment_sort_key  | appointment: Appointment                                                  |         |                               |                                     |
+| select_appointments   | appointments: list,    practitioner_id: str,<br>status: AppointmentStatus |         |                               |                                     |
+| Service listing       |                                                                           |         |                               |                                     |
+| Console               |                                                                           |         |                               |                                     |
 
 Relate patient ID/name, practitioner ID/name/specialty, and appointment ID/actual participants/date_time/status to the existing contracts: <!-- response -->
 
 ### A3 Responsibility violations
 
-| Conceptual case                 | Violation | Correct boundary and reason |
-| ------------------------------- | --------- | --------------------------- |
-| Appointment.cancel reads input  |           |                             |
-| Service prints/reads the menu   |           |                             |
-| Query sorts its source in place |           |                             |
-| Store prints Appointment saved  |           |                             |
+| Conceptual case                 | Violation | Correct boundary and reason                                                                |
+| ------------------------------- | --------- | ------------------------------------------------------------------------------------------ |
+| Appointment.cancel reads input  | No        | cancel function needs to read the input variable of the appointment chosen to be cancelled |
+| Service prints/reads the menu   | Yes       | Menu/UI aspects are for the user. Service does not need to read these elements             |
+| Query sorts its source in place | Yes       | Query only needs to read data, not change anything                                         |
+| Store prints Appointment saved  | No        | It is important to show the user that the appointment has been saved.                      |
 
 ### A4 Sorting comparison
 
@@ -51,7 +51,7 @@ Score-example prediction and explanation of passing the named key: <!-- response
 
 ### A5 Exit question
 
-Explain cancellation versus deletion, and checks for same-session lookup, all-status listing and SCHEDULED-only exclusion: <!-- response -->
+Explain cancellation versus deletion, and checks for same-session lookup, all-status listing and SCHEDULED-only exclusion: Cancellation differs from deletion in that cancellation is a toggle and part of appointment data, whereas deletion removes all data related to the appointment permanently.
 
 ## B. Human design and contracts
 
