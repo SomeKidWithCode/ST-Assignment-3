@@ -5,9 +5,13 @@ Baseline: Stage 6 foundation, 2026 revision 2. This starter deliberately leaves 
 
 ## Group index
 
-- Group and tutorial: [complete]
-- Member names, GitHub usernames and UG/PG cohorts: [complete]
-- Shared repository URL: [complete]
+- Group and tutorial: Mon 2:30 - 4:30 Group 1
+- Member names, GitHub usernames and UG/PG cohorts: \
+	- Kael (SomeKidWithCode), UG
+	- Ash (Ash-Salt08), UG
+	- Bailey (Sparkachu), UG
+	- Sushil (Sushil-Bhattarai-101), UG
+- Shared repository URL: https://github.com/SomeKidWithCode/ST-Assignment-3
 - Latest completed stage: [complete]
 - Verified code SHA: [complete]
 - Test command, working directory and observed result: [complete]

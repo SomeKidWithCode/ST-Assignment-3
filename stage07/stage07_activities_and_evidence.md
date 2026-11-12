@@ -20,7 +20,7 @@ For each requirement, propose one positive test, one negative test and the key a
 | Requirement | Positive test | Negative test | Key assertion |
 |---|---|---|---|
 | FR-01 Register patient | Register new patient | Register already existing patient | If the patient is already registered |
-| FR-05 Prevent practitioner conflict | [response] | [response] | [response] |
+| FR-05 Prevent practitioner conflict | Practitioner is not already assigned to the appointment at the time | Practitioner is already assigned to the appointment at the time | [response] |
 | FR-06 Cancel appointment | Cancel schudeled appointment | Cancel canceled appointment | If the appointment is not schudeled |
 | FR-07 Retain cancelled history | [response] | [response] | [response] |
 
@@ -59,10 +59,10 @@ GitHub Copilot generates five tests, all of which pass. Two only assert that obj
 
 | Candidate | What is wrong | Rewritten test intention |
 |---|---|---|
-| 1 | [response] | [response] |
+| 1 | `not None` is not extensive enough | Test other states of the object |
 | 2 | [response] | [response] |
 | 3 | Assert True does nothing | Test actually tests something |
-| 4 | [response] | [response] |
+| 4 | Assumes SMS notifications exist | Test if SMS notifications exist |
 | 5 | [response] | [response] |
 
 ### Tutorial exit question
@@ -230,8 +230,8 @@ A weak assertion is one that doesn't prove anything or doesn't measure a change 
 ## O Stage Completion
 
 Tested Stage 7 main SHA: [complete]
-Full-suite result: [complete]
-Unresolved defects and effect on baseline: [complete or none]
+Full-suite result: All tests complete
+Unresolved defects and effect on baseline: None
 Clean working tree and integration evidence: [complete]
-Stage 8 handover status: [complete; no Stage 8 work assigned]
-All tutorial/formative responses and traceability/Copilot decisions complete: [confirm]
+Stage 8 handover status: complete; no Stage 8 work assigned
+All tutorial/formative responses and traceability/Copilot decisions complete: Yes
