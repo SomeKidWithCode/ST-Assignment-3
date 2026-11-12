@@ -173,10 +173,31 @@ class AppointmentService:
 		practitioner_id: str,
 		status: AppointmentStatus | None = None,
 	) -> list[Appointment]:
-		"""Stage 9: new ordered list; default includes every status.
+		"""New ordered list; default includes every status.
 
 		Unknown practitioner raises LookupError, invalid status
 		ValueError; a known practitioner with no matches returns an
 		empty list.
 		"""
-		raise NotImplementedError('Stage 9: practitioner appointments')
+		
+		# Step 1. Find the practitioner
+		practitioner = self.data_store.find_practitioner(practitioner_id)
+		# Not being able to find them throws a LookupError
+		if practitioner is None:
+			raise LookupError(f"Practitioner with ID \'{practitioner_id}\' could not be found")
+
+		# Step 2. Filter appointment list
+		practitioner_appointments: list[Appointment] = []
+		for appointment in self.data_store.list_appointments():
+			if appointment.practitioner.practitioner_id == practitioner_id:
+				practitioner_appointments.append(appointment)
+
+		# Step 3. If given, further filter appointments by status
+		if status is not None:
+			if not list(AppointmentStatus).__contains__(status):
+				raise ValueError(f"\'status\' is not a valid status")
+
+			# Filter method is used because we do not want to create another list
+			practitioner_appointments = [appt for appt in practitioner_appointments if appt.status == status]
+		
+		return practitioner_appointments
