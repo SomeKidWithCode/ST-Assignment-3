@@ -12,9 +12,8 @@ Members, GitHub usernames and cohorts:
 
 ## A Release scope and starting SHA
 
-Release label/version and requirements baseline: [response]
-Common starting SHA / branch / applicable members: [response]
-PG starting SHA / branch / applicable members or not applicable: [response]
+Release label/version and requirements baseline: v1.0, all critical requirements must be implemented.
+Common starting SHA / branch / applicable members: 429805fb4da51374cc4f70fc92b3d17eae2304ef
 Working-state review and approved integration: [response]
 Protected common candidate and PG differences: [response]
 Feature freeze / owner / verifier: [response]
@@ -26,20 +25,20 @@ Tutorial activity 1: All tests pass, README setup is incomplete, one dependency 
 
 Tutorial activity 2 and actual readiness matrix. Add exact requirement/acceptance IDs, evidence and reviewer; distinguish common/PG applicability.
 
-| Release claim / requirement / scope | Evidence | Location/link and SHA | Reviewer | Sufficient? | Gap/action |
-|---|---|---|---|---|---|
-| Cancellation history works | [response] | [response] | [response] | [response] | [response] |
-| Architecture responsibilities are appropriate | [response] | [response] | [response] | [response] | [response] |
-| Rescheduling is safe — PG only | [response] | [response] | [response] | [response] | [response] |
-| AI use is responsible — common recheck / PG assurance | [response] | [response] | [response] | [response] | [response] |
-| System is maintainable | [response] | [response] | [response] | [response] | [response] |
-| FR-01–03 register/find and validation | [response] | [response] | [response] | [response] | [response] |
-| FR-04–05 booking/conflict rules | [response] | [response] | [response] | [response] | [response] |
-| FR-06–08 cancellation/history/find | [response] | [response] | [response] | [response] | [response] |
-| FR-09 and QRY/FP listing/filter/order/purity | [response] | [response] | [response] | [response] | [response] |
-| UI full console sequence and error recovery | [response] | [response] | [response] | [response] | [response] |
-| Session-only scope / FR-10 retired | [response] | [response] | [response] | [response] | [response] |
-| PG RES and assurance integration | [response] | [response] | [response] | [response] | [response] |
+| Release claim / requirement / scope                   | Evidence   | Location/link and SHA | Reviewer   | Sufficient? | Gap/action |
+| ----------------------------------------------------- | ---------- | --------------------- | ---------- | ----------- | ---------- |
+| Cancellation history works                            | [response] | [response]            | [response] | [response]  | [response] |
+| Architecture responsibilities are appropriate         | [response] | [response]            | [response] | [response]  | [response] |
+| Rescheduling is safe — PG only                        | [response] | [response]            | [response] | [response]  | [response] |
+| AI use is responsible — common recheck / PG assurance | [response] | [response]            | [response] | [response]  | [response] |
+| System is maintainable                                | [response] | [response]            | [response] | [response]  | [response] |
+| FR-01–03 register/find and validation                 | [response] | [response]            | [response] | [response]  | [response] |
+| FR-04–05 booking/conflict rules                       | [response] | [response]            | [response] | [response]  | [response] |
+| FR-06–08 cancellation/history/find                    | [response] | [response]            | [response] | [response]  | [response] |
+| FR-09 and QRY/FP listing/filter/order/purity          | [response] | [response]            | [response] | [response]  | [response] |
+| UI full console sequence and error recovery           | [response] | [response]            | [response] | [response]  | [response] |
+| Session-only scope / FR-10 retired                    | [response] | [response]            | [response] | [response]  | [response] |
+| PG RES and assurance integration                      | [response] | [response]            | [response] | [response]  | [response] |
 
 
 ## C Full regression results
@@ -102,15 +101,15 @@ Available AI evidence and missing evidence honestly disclosed: [response]
 
 ## F README and reproducibility check
 
-| README item | Location | Verifier | Result/gap |
-|---|---|---|---|
-| Purpose and included common/PG scope | [response] | [response] | [response] |
-| Out-of-scope capabilities and known limitations | [response] | [response] | [response] |
+| README item                                                   | Location   | Verifier   | Result/gap |
+| ------------------------------------------------------------- | ---------- | ---------- | ---------- |
+| Purpose and included common/PG scope                          | [response] | [response] | [response] |
+| Out-of-scope capabilities and known limitations               | [response] | [response] | [response] |
 | Confirmed teaching Python version and dependency installation | [response] | [response] | [response] |
-| Working directory / demo / interactive / test commands | [response] | [response] | [response] |
-| Repository structure and architecture responsibilities | [response] | [response] | [response] |
-| Responsible AI summary / synthetic-data rule | [response] | [response] | [response] |
-| Release label/version and SHA links | [response] | [response] | [response] |
+| Working directory / demo / interactive / test commands        | [response] | [response] | [response] |
+| Repository structure and architecture responsibilities        | [response] | [response] | [response] |
+| Responsible AI summary / synthetic-data rule                  | [response] | [response] | [response] |
+| Release label/version and SHA links                           | [response] | [response] | [response] |
 Root README index and project/README verified: [response]
 Fresh clone or extracted ZIP / candidate identity: [response]
 Verifier and clean environment / actual version: [response]
