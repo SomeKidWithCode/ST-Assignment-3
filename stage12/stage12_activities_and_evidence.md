@@ -2,8 +2,12 @@
 
 BLANK student response template. Supplied from the beginning in stage12/ in your EXISTING repository; complete it only when you reach Stage 12 after the previous applicable stage is integrated, verified and recorded; preserve project/, tests, earlier records and Git history. UG/common and PG/extended scope must be explicit. Use concise results and versioned links, not copied logs or source. No staff answers or fabricated approvals.
 
-Group/tutorial: [response]
-Members and UG/PG applicability: [response]
+Group/tutorial: Mon 2:30 - 4:30 Group 1
+Members, GitHub usernames and cohorts:
+  - Kael (SomeKidWithCode), UG
+  - Ash (Ash-Salt08), UG
+  - Bailey (Sparkachu), UG
+  - Sushil (Sushil-Bhattarai-101), UG
 
 
 ## A Release scope and starting SHA
@@ -18,7 +22,7 @@ Feature freeze / owner / verifier: [response]
 
 ## B Requirements and release readiness matrix
 
-Tutorial activity 1: All tests pass, README setup is incomplete, one dependency is unreviewed and a known limitation is undocumented. Decide Release / Release with conditions / Do not release and justify: [response]
+Tutorial activity 1: All tests pass, README setup is incomplete, one dependency is unreviewed and a known limitation is undocumented. Decide Release / Release with conditions / Do not release and justify: Do not release. Any flaws should be documented and the README is often the first point of contact for a program, and needs to be finished.
 
 Tutorial activity 2 and actual readiness matrix. Add exact requirement/acceptance IDs, evidence and reviewer; distinguish common/PG applicability.
 
