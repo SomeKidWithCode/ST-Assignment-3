@@ -59,3 +59,11 @@ cd ..
 ```
 
 Use the approved environment described in the Git/GitHub group guide. The verified baseline is Python 3.13 with pytest 8.3.5. GitHub Copilot is the nominated assistant; verify significant output and record required decisions. Use synthetic data only. Use each supplied record only when you reach that stage in the applicable sequence.
+
+## Purpose and included common/PG scope
+## Out-of-scope capabilities and known limitations
+## Confirmed teaching Python version and dependency installation
+## Working directory / demo / interactive / test commands
+## Repository structure and architecture responsibilities
+## Responsible AI summary / synthetic-data rule
+## Release label/version and SHA links
