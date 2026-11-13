@@ -98,8 +98,10 @@ def run_menu() -> None:
 
     # Print welcome message
     print("#################### - SMARTCARE - ####################")
+    print()
     print("      Welcome to the SmartCare Hospital Interface      ")
     print("#################### - SMARTCARE - ####################")
+    print()
     print("\n(Please note that all session data is lost on exit)\n")
 
 
@@ -126,7 +128,6 @@ def run_menu() -> None:
                     patient_name: str = input("\nEnter patient name: ")
 
                     try:
-                        # The chance that two random integers are the same are very low so this should provide acceptable randomness
                         patient_id: str = random_id()
                         patients.register_patient(patient_id, patient_name)
 
@@ -252,6 +253,7 @@ def run_menu() -> None:
                         print(f"\tID #{appt.appointment_id}")
                         print(f"\tPractitioner: {practitioner.name}")
                         print(f"\tPatient: {patient.name}")
+                        print(f"\tTime: {appt.date_time}")
                         print(f"\tStatus: Scheduled")
                     except ValueError:
                         print("There is already an appointment with that time booked.")
@@ -263,12 +265,17 @@ def run_menu() -> None:
 
                 scheduled_appointments: list[Appointment] = [appt for appt in all_appointments if appt.status == AppointmentStatus.SCHEDULED]
 
+                if len(scheduled_appointments) == 0:
+                    print("No appointments to cancel")
+                    continue
+
                 print("Select an appointment to cancel:\n")
                 for appt in scheduled_appointments:
                     print(f"{scheduled_appointments.index(appt) + 1}:")
                     print(f"\tID #{appt.appointment_id}")
                     print(f"\tPractitioner: {practitioner.name}")
                     print(f"\tPatient: {patient.name}")
+                    print(f"\tTime: {appt.date_time}")
                     print()
 
                 canceling_an_appointment: bool = True
@@ -289,7 +296,8 @@ def run_menu() -> None:
 
             elif user_input_num == 5:
                 all_practitioners: list[Practitioner] = data_store.list_practitioners()
-                all_appointments: list[Appointment] = data_store.list_appointments()
+                # This also includes canceled appointments
+                all_appointments: list[Appointment] = data_store.list_appointments() + appointments.cancelled_appointments
 
                 # Get the practitioner to list for
                 practitioner: Practitioner | None = None
@@ -327,6 +335,8 @@ def run_menu() -> None:
                         print(f"\tID #{appt.appointment_id}")
                         print(f"\tPractitioner: {appt.practitioner.name}")
                         print(f"\tPatient: {appt.patient.name}")
+                        print(f"\tTime: {appt.date_time}")
+                        print(f"\tStatus: {appt.status.name}")
                         print()
 
             elif user_input_num == 6:
@@ -338,17 +348,20 @@ def run_menu() -> None:
         except ValueError:
             print("That is not a valid option.\nPlease try again.")
 
-        
-        
-        
 
     # Print exit message
     print()
     print("#################### - SMARTCARE - ####################")
+    print()
     print("  Thank you for using the SmartCare Hospital Interface ")
     print("                        Goodbye!                       ")
+    print()
     print("#################### - SMARTCARE - ####################")
 
 
 def random_id() -> str:
+    '''
+    Creates a random ID.
+    The chance that two random integers are the same twice are very low so this should provide acceptable randomness.
+    '''
     return str(int((random.randint(1, 10 ** 4) + random.randint(1, 10 ** 4)) / 2))

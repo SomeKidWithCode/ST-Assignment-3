@@ -79,15 +79,19 @@ Complete before GitHub Copilot. Record any interface/integrity decision and its 
 
 | Requirement | Input / session data | Operation and responsible component | Expected result or error | Test / evidence |
 | ----------- | -------------------- | ----------------------------------- | ------------------------ | --------------- |
-|             |                      |                                     |                          |                 |
-|             |                      |                                     |                          |                 |
-|             |                      |                                     |                          |                 |
-|             |                      |                                     |                          |                 |
-|             |                      |                                     |                          |                 |
-|             |                      |                                     |                          |                 |
+| Registering patient |Patient name                      |                  PatientService's register_patient                   |                         None |                 |
+| Find patient |                     Patient name |                         SmartCareDataStore's list_patients            |                None          |                 |
+| Book appointment |                   Practitioner name, patient name, booking time   |                         SmartCareDataStore's list_practitioners and list_patients, AppointmentServices's book_appointment and parse_date_time           |                          None|                 |
+| Cancel appointment |                   Appointment id to cancel   |                     SmartCareDataStore's list_appointments and AppointmentService's cancel_appointment                |               None           |                 |
+| List practitioner's appointments |                     Practitioner name to list appointments of |             SmartCareDataStore's list_practitioners and list_appointments                        |                          None|                 |
+| Exit |None                      |None                                     |None                          |                 |
 
 Cover QRY-01–04, FP-01–03, UI-01–02 and relevant FR-01–09. Explain empty versus unknown versus invalid, enum conversion, actual object identity, error handling and unchanged state on rejection:
-* Empty is abscence of value. Unknown is 
+* Empty is abscence of value. Unknown is unknown value. Invalid is a value that is not excepted.
+* Enum conversion could either refer to conversion of enums to a str, which returns the name of the enum, or conversion to an integer, which returns the number the enum options is identified as (0, 1, 2, etc).
+* Actual object identity likes refers to that objects are effectively references to a block of memory and that references to that object are shared accross things like lists, function calls and variable names.
+* Error handling is done internally by the console application. When it detects there is an error with the supplied input, it captures it and prints a message explaining the error.
+* The console is not directly responsible for unchanged state/state protection, but the underlying system provides that service, with the console capturing errors that the rejection may cause.A
 
 ## C. Implementation and query verification
 
@@ -104,8 +108,8 @@ What the tests do and do not establish: <!-- response -->
 
 | Scenario / acceptance ID     | Reproducible inputs / artefact | Expected result | Observed result and state check | Evidence link |
 | ---------------------------- | ------------------------------ | --------------- | ------------------------------- | ------------- |
-| UI-01 full menu workflow     |                                |                 |                                 |               |
-| UI-02 invalid-input recovery |                                |                 |                                 |               |
+| UI-01 full menu workflow     |                                |                 |                                 |       See 'Proof of working console app.png' 1-8        |
+| UI-02 invalid-input recovery |                                |                 |                                 |        See 'Proof of working console app.png' 1, 4 and 7       |
 | Automated service workflow   |                                |                 |                                 |               |
 
 Include registration/find, booking, conflict rejection, different-practitioner booking, cancellation, retrieval, listing/filtering, freed slot and exit; duplicate/unknown/blank IDs, malformed/impossible date, invalid status, unknown choice and repeated cancellation. Identify before/after state and subsequent successful action.
@@ -128,7 +132,8 @@ Responsibility check: explain how domain invariants, shared-store collections, s
 
 1. Which integration concern was architectural rather than a filtering/sorting detail? <!-- response -->
 2. Which Copilot suggestion did you reject as over-engineering, and why? <!-- response -->
-3. How did you prove cancelled appointments remain retrievable and listable in the same session? <!-- response -->
+3. How did you prove cancelled appointments remain retrievable and listable in the same session?
+Cancelled appointments remain retrievable and listable in the same session because they are included when gathering all appointments to list when displaying a practitioner's appointments.
 
 ## G. Ten formative answers
 
@@ -191,7 +196,9 @@ Issues and bounded branches: <!-- links -->
 PR/diff and another-member human reviewer: <!-- actual links/name -->
 Review responses and Copilot comparison: <!-- links -->
 Integrated common Stage 9 SHA: <!-- complete -->
-Full regression command, working directory, actual count/result and evidence: <!-- complete -->
+Full regression command, working directory, actual count/result and evidence:
+* FRC: python -m pytest -vv
+* Working directory: project/
 README run instructions and scope/limitations: <!-- link -->
 Unresolved issues and support/action: <!-- complete -->
 UG common candidate / PG future branch plan: <!-- complete -->
