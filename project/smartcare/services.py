@@ -153,7 +153,7 @@ class AppointmentService:
 		invalid transitions raise ValueError and leave state unchanged.
 		"""
 
-		appointment = self.data_store.find_appointment(appointment_id)
+		appointment: Appointment | None = self.data_store.find_appointment(appointment_id)
 		if appointment is None:
 			raise LookupError(f'Appointment with ID \'{appointment_id}\' could not be found')
 
@@ -181,7 +181,7 @@ class AppointmentService:
 		"""
 		
 		# Step 1. Find the practitioner
-		practitioner = self.data_store.find_practitioner(practitioner_id)
+		practitioner: Practitioner | None = self.data_store.find_practitioner(practitioner_id)
 		# Not being able to find them throws a LookupError
 		if practitioner is None:
 			raise LookupError(f"Practitioner with ID \'{practitioner_id}\' could not be found")

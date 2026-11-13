@@ -79,10 +79,10 @@ def run_menu() -> None:
     """
 
     # Initialize SmartCare services and domains
-    data_store = SmartCareDataStore()
-    patients = PatientService(data_store)
-    practitioners = PractitionerService(data_store)
-    appointments = AppointmentService(data_store)
+    data_store: SmartCareDataStore = SmartCareDataStore()
+    patients: PatientService = PatientService(data_store)
+    practitioners: PractitionerService = PractitionerService(data_store)
+    appointments: AppointmentService = AppointmentService(data_store)
 
     practitioners.register_practitioner("bruh", "Docktor", "Everything")
 
@@ -103,7 +103,7 @@ def run_menu() -> None:
     print("\n(Please note that all session data is lost on exit)\n")
 
 
-    exit = False
+    exit: bool = False
 
     # Main loop, exited on exit
     while not exit:
@@ -112,22 +112,22 @@ def run_menu() -> None:
         for opt in options:
             print(f"\t{opt}: {options[opt]}")
 
-        user_input = input("\nSelect option [1-6]: ")
+        user_input: str = input("\nSelect option [1-6]: ")
 
         try:
-            user_input_num = int(user_input)
+            user_input_num: int = int(user_input)
 
             if user_input_num >= 1 and user_input_num <= 6:
                 print(f"\nSelected \'{options[user_input_num]}\'")
 
             if user_input_num == 1:
-                getting_patient_name = True
+                getting_patient_name: bool = True
                 while getting_patient_name:
-                    patient_name = input("\nEnter patient name: ")
+                    patient_name: str = input("\nEnter patient name: ")
 
                     try:
                         # The chance that two random integers are the same are very low so this should provide acceptable randomness
-                        patient_id = random_id()
+                        patient_id: str = random_id()
                         patients.register_patient(patient_id, patient_name)
 
                         getting_patient_name = False
@@ -140,7 +140,7 @@ def run_menu() -> None:
                         print(f"Please try again.")
 
             elif user_input_num == 2:
-                patient_name = input("\nEnter patient name: ")
+                patient_name: str = input("\nEnter patient name: ")
 
                 found_patients: list[Patient] = []
                 for patient in data_store.list_patients():
@@ -159,8 +159,8 @@ def run_menu() -> None:
 
             elif user_input_num == 3:
                 # Get all practitioners and patients
-                all_practitioners = data_store.list_practitioners()
-                all_patients = data_store.list_patients()
+                all_practitioners: list[Practitioner] = data_store.list_practitioners()
+                all_patients: list[Patient] = data_store.list_patients()
 
                 booking_appointment: bool = True
                 while booking_appointment:
@@ -236,10 +236,10 @@ def run_menu() -> None:
                             print("Please try again.")
 
                     
-                    appt_id = random_id()
+                    appt_id: str = random_id()
 
                     try:
-                        appt = appointments.book_appointment(
+                        appt: Appointment = appointments.book_appointment(
                             appt_id,
                             patient.patient_id,
                             practitioner.practitioner_id,
@@ -271,16 +271,16 @@ def run_menu() -> None:
                     print(f"\tPatient: {patient.name}")
                     print()
 
-                canceling_an_appointment = True
+                canceling_an_appointment: bool = True
                 while canceling_an_appointment:
-                    appt_id_to_cancel = input("Enter appointment ID (or exit to exit): ")
+                    appt_id_to_cancel: str = input("Enter appointment ID (or exit to exit): ")
 
                     if appt_id_to_cancel.strip().lower() == "exit":
                         break
 
                     try:
-                        canceled_appt = appointments.cancel_appointment(appt_id_to_cancel)
-                        canceling_an_appointment = False
+                        canceled_appt: Appointment = appointments.cancel_appointment(appt_id_to_cancel)
+                        canceling_an_appointment: bool = False
 
                         print(f"Canceled appointment with ID {canceled_appt.appointment_id}")
                     except LookupError:

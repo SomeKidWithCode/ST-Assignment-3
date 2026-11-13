@@ -18,7 +18,7 @@ from smartcare.services import (
 from test_starter import foundation
 
 
-def test_cancel_changes_status():
+def test_cancel_changes_status() -> None:
     '''Test that when canceling an appointment, the status of the appointment changes from booked to cancelled'''
 
     data_store, patient, practitioner, appointment_service = foundation()
@@ -29,28 +29,26 @@ def test_cancel_changes_status():
         "D1",
         datetime(2026, 11, 19, 7)
     )
-    
+
+    # Assertion 1. Check that the status changes after being canceled.
     assert appointment.status == AppointmentStatus.SCHEDULED
     appointment.cancel()
     assert appointment.status == AppointmentStatus.CANCELLED
 
 
-def test_blank_patient_id_is_rejected():
+def test_blank_patient_id_is_rejected() -> None:
     '''Test that when adding a patient, you cannot add a blank ID'''
 
     data_store, patient, practitioner, appointment_service = foundation()
 
-    patient_service = PatientService(data_store)
+    patient_service: PatientService = PatientService(data_store)
 
-    failed = False
-    try: 
+    # Assertion 1. A ValueError is raised if trying to register a patient with a blank ID
+    with pytest.raises(ValueError):
         patient_service.register_patient(
             "     ",
             "John"
         )
-    except:
-        failed = True
-    assert failed
 
 
 #@pytest.mark.parametrize("test_input,expected", [("3+5", 8), ("2+4", 6), ("6*9", 42)])

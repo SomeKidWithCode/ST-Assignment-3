@@ -25,7 +25,7 @@ def select_appointments(
     Do not mutate the source list/objects or perform input/output.
     """
 
-    # Same practitioner and status filters as used by AppointmentService's list_practitioner_appointments method
+    # Same practitioner and status filter system as used by AppointmentService's list_practitioner_appointments method
     # (Minus checks)
 
     # Stage 1. Get list of appointments for this practitioner

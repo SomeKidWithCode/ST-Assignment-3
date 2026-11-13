@@ -21,15 +21,13 @@ from test_starter import foundation
 def test_finding_patients() -> None:
     '''Test patient storage finding'''
     data_store, patient, practitioner, appointment_service = foundation()
-   
-    patient_alex = data_store.find_patient("P1")
+    
+    # Assertion 1. The known registered patient can be found
+    patient_alex: Patient | None = data_store.find_patient("P1")
     assert patient_alex is not None
-   
-    patient_steve = None
-    try:
-       patient_steve = data_store.find_patient("P2")
-    except:
-       print("Patient with ID \'P2\' correctly could not be found")
+
+    # Assertion 2. A known unregistered patient cannot be found
+    patient_steve: Patient | None = data_store.find_patient("P2")
     assert patient_steve is None
 
 
@@ -37,55 +35,56 @@ def test_finding_pracitioners() -> None:
     '''Test practition storage finding'''
     data_store, patient, practitioner, appointment_service = foundation()
 
-    practitioner_taylor = data_store.find_practitioner("D1")
+    # Assertion 1. The known registered practitioner can be found
+    practitioner_taylor: Practitioner | None = data_store.find_practitioner("D1")
     assert practitioner_taylor is not None
 
-    practitioner_swift = None
-    try:
-        practitioner_swift = data_store.find_practitioner("D2")
-    except:
-        print("Practitioner with ID \'D2\' correctly could not be found")
+    # Assertion 2. A known unregistered practitioner cannot be found
+    practitioner_swift: Practitioner | None = data_store.find_practitioner("D2")
     assert practitioner_swift is None
+
 
 def test_finding_appointments() -> None:
     data_store, patient, practitioner, appointment_service = foundation()
     
-    appointment = appointment_service.book_appointment(
+    appointment: Appointment = appointment_service.book_appointment(
         "A1",
         "P1",
         "D1",
         datetime(2026, 11, 19, 7)
     )
 
-    found_appointment = data_store.find_appointment("A1")
+    found_appointment: Appointment | None = data_store.find_appointment("A1")
 
+    # Assertion 1. The appointment was found
     assert found_appointment is not None
-    assert found_appointment.status == AppointmentStatus.SCHEDULED
-    assert found_appointment == appointment
 
+    # Assertion 2. The appointment is booked
+    assert found_appointment.status == AppointmentStatus.SCHEDULED
+
+    # Assertion 3. The found appointment is the same object as the booked appointment
+    assert found_appointment == appointment
 
 
 def test_appointment_cancellation() -> None:
     data_store, patient, practitioner, appointment_service = foundation()
 
-    appointment = appointment_service.book_appointment(
+    appointment: Appointment = appointment_service.book_appointment(
         "A1",
         "P1",
         "D1",
         datetime(2026, 11, 19, 7)
     )
 
+    # Assertion 1. The status changes from scheduled to canceled after cancel being called.
     assert appointment.status == AppointmentStatus.SCHEDULED
     appointment_service.cancel_appointment(appointment.appointment_id)
     assert appointment.status == AppointmentStatus.CANCELLED
 
-    cancelled_twice = False
-    try:
+    # Assertion 2. A ValueError is raised if you try to cancel an already canceled appointment
+    with pytest.raises(ValueError):
         appointment.cancel()
-        cancelled_twice = True
-    except:
-        print("Correctly prevented double cancel")
-    assert not cancelled_twice
-
+    
+    # Assertion 3. 
     appointments = data_store.list_appointments()
     assert not appointments.__contains__(appointment)

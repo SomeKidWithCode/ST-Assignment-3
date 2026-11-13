@@ -5,12 +5,19 @@ Baseline: Stage 6 foundation, 2026 revision 2. This starter deliberately leaves 
 
 ## Group index
 
-- Group and tutorial: [complete]
-- Member names, GitHub usernames and UG/PG cohorts: [complete]
-- Shared repository URL: [complete]
-- Latest completed stage: [complete]
+- Group and tutorial: Mon 2:30 - 4:30 Group 1
+- Member names, GitHub usernames and UG/PG cohorts:
+  * Kael (SomeKidWithCode), UG
+  * Ash (Ash-Salt08), UG
+  * Bailey (Sparkachu), UG
+  * Sushil (Sushil-Bhattarai-101), UG
+- Shared repository URL: https://github.com/SomeKidWithCode/ST-Assignment-3/tree/main
+- Latest completed stage: 9
 - Verified code SHA: [complete]
-- Test command, working directory and observed result: [complete]
+- Test command, working directory and observed result:
+    * python -m pytest -vv
+    * project/
+    * 
 - Final submitted SHA, if different from tested code SHA: [complete; explain evidence-only changes]
 
 Do not put student IDs, private peer ratings, credentials or personal contact details here.
@@ -40,8 +47,6 @@ Complete the supplied Stage 12 record when you reach Stage 12. UG releases the c
 - [Stage 7 activities and evidence](stage07/stage07_activities_and_evidence.md)
 - [Stage 8 activities and evidence](stage08/stage08_activities_and_evidence.md)
 - [Stage 9 activities and evidence](stage09/stage09_activities_and_evidence.md)
-- [Stage 10 PG activities and evidence](stage10_pg/stage10_activities_and_evidence.md)
-- [Stage 11 PG activities and evidence](stage11_pg/stage11_activities_and_evidence.md)
 - [Stage 12 activities and evidence](stage12/stage12_activities_and_evidence.md)
 
 Git commands in the practical guide run from this root. Application commands run from project/:
