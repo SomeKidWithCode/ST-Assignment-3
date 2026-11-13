@@ -286,59 +286,171 @@ The terminal output confirmed:
 
 There were no failed tests or errors.
 
-### Reflection (B to G)
-
-**1. Which Copilot-generated test looked convincing but was weak?**
-
-The repeated-cancellation test initially appeared sufficient because it checked whether a `ValueError` was raised. However, checking only the exception did not prove that the appointment status and cancellation history remained unchanged.
-
-**2. How was it strengthened?**
-
-The test was improved by checking the appointment's identity in the data store, its CANCELLED status, the stored appointment list and the cancellation history before and after the second cancellation attempt.
-
-**3. What does the test suite still not prove?**
-
-The test suite does not prove that every possible invalid input is handled correctly. For example, the whitespace-only ID tests do not check every possible non-string input, such as `None`. It also does not test practitioner appointment listing because that functionality belongs to a later stage and has not been implemented.
-
-### Conclusion (B to G)
-
-The Stage 7 testing work covers important SmartCare domain and service behaviours. The tests verify patient and practitioner validation, appointment construction, appointment cancellation, searching, booking conflicts and error handling.
-
-Additional student-authored tests improve the original starter evidence by checking boundary conditions and ensuring that rejected operations do not change existing records or appointment states.
-
-Copilot-generated suggestions were reviewed rather than accepted automatically. Useful tests were accepted or strengthened, while functionality belonging to Stage 9 was deferred.
-
-The final execution confirmed that all 28 tests passed successfully in 0.02 seconds. This provides evidence that the current domain, service and starter test cases work as expected.
-
 ## H GitHub Copilot Test Design
 
-Select ONE real acceptance criterion. Complete human-first fields before using Copilot. Do not require an accepted generated test.
+**Member and task:** Sushil – Used GitHub Copilot as an independent test-design reviewer to evaluate negative, boundary and state-preservation test cases for the SmartCare project.
 
-Requirement: [complete]
-Acceptance criterion: [quote]
-Behaviour to test: [complete]
-Human-first test idea/categories: [complete]
-Prompt and purpose: [complete or link]
+**Prompt and purpose:** Provided Copilot with the existing project context, implementation files, test files and available assignment evidence. Asked it to identify approximately 5–8 meaningful test candidates, trace each to an actual requirement or method contract, evaluate assertion quality, identify potential weaknesses and recommend whether each candidate should be accepted, modified or rejected.
 
-For each significant candidate, copy this entry as needed:
-- Copilot test idea/candidate: [complete]
-- What it claims to verify: [complete]
-- Requirement trace: [complete]
-- Assertion quality: [complete]
-- Human critique: [complete]
-- Decision: [Accept / Modify / Reject]
-- Reason: [complete]
-- Final test reference if accepted/modified: [link or not retained]
-- Actual verification result: [complete; do not claim an unrun test passed]
+**Summary of actual Copilot output:**
 
-Before accepting: traces to a requirement/criterion; can fail for the right reason; assertion checks required behaviour; no invented business rule; no unnecessary private implementation dependence. Reject/modify weak assertions, invented requirements, excessive mocking, duplicates, wrong exceptions, obsolete architecture and unnecessary dependencies.
+Copilot analysed the existing implementation and test suite and proposed seven candidates:
+
+- C1: Strengthen repeated-cancellation testing by checking appointment state and cancellation history.
+- C2: Check that a rejected booking conflict does not change stored appointments.
+- C3: Check that a cancelled appointment does not prevent rebooking.
+- C4: Test timezone-aware and nonzero-microsecond datetime validation.
+- C5: Test whitespace-only patient and practitioner lookup IDs.
+- C6: Distinguish unknown appointment IDs from blank appointment IDs.
+- C7: Test practitioner appointment listing, identified as Stage 9 functionality and deferred.
+
+Copilot also highlighted that checking only for a `ValueError` might not prove that appointment state and cancellation history remained unchanged.
+
+**Human check against actual code, requirements and tests:** Compared the suggestions with the existing SmartCare implementation, test files and available assignment evidence. Checked whether each suggestion addressed a genuine testing gap, duplicated existing coverage or introduced functionality outside the current stage. The Stage 9 practitioner-listing suggestion was not treated as completed Stage 7 functionality. Suggested test code was treated as a proposal and reviewed before use.
+
+**Decision – Accept / Modify / Reject:** Relevant test ideas were accepted or modified following human evaluation. The practitioner-listing candidate was rejected for the current Stage 7 scope and deferred to Stage 9.
+
+**Reason:** Some suggestions provided useful additional coverage, particularly checking that rejected operations did not change existing appointment state. Other suggestions required stronger assertions or careful requirement tracing. Copilot's output was not accepted automatically.
+
+**Verification/evidence:** Copilot explicitly stated that its proposed tests had not been executed. Selected and modified test ideas were subsequently included in the project test suite. The later full regression run was recorded as 28 passed and 0 failed. This result represents the project test suite and does not mean every original Copilot candidate was independently executed.
+
+**Interaction evidence – Original Copilot prompt:**
+
+### Original GitHub Copilot Prompt – Stage 7 Part G
+
+> I am working on a Software Testing assignment for a Python project called SmartCare, a medical appointment management system.
+>
+> I need your help with Part G: Critique Copilot Generated Tests.
+>
+> **Important:** Act as an independent test reviewer. Do not automatically agree with the existing implementation or generate tests simply to increase the test count.
+>
+> **1. Project context**
+>
+> Inspect these existing project files:
+>
+> - `smartcare/domain.py`
+> - `smartcare/data_store.py`
+> - `smartcare/services.py`
+> - `tests/test_domain.py`
+> - `tests/test_services.py`
+> - `tests/test_starter.py`
+>
+> Also inspect the assignment requirements if available.
+>
+> The current project has 21 passing tests:
+>
+> - Domain tests: 8
+> - Service tests: 5
+> - Starter tests: 8
+>
+> Execution command: `python -m pytest -v`
+>
+> **2. Existing functionality**
+>
+> The project currently supports:
+>
+> - Patient and practitioner registration and lookup.
+> - Appointment booking and lookup.
+> - Appointment cancellation.
+> - Prevention of duplicate records.
+> - Prevention of practitioner scheduling conflicts.
+> - Appointment status validation.
+> - Cancelled appointment history.
+>
+> The `AppointmentService` also contains a `list_practitioner_appointments` method marked as Stage 9, which currently raises `NotImplementedError`.
+>
+> Do not assume unimplemented functionality is an assignment requirement unless confirmed by the assignment brief.
+>
+> **3. Task – Generate test candidates**
+>
+> Analyse the existing tests and identify approximately 5–8 meaningful candidates covering negative cases, boundary conditions or missing test coverage.
+>
+> For each candidate, provide:
+>
+> 1. Candidate test name.
+> 2. Idea and behaviour to test.
+> 3. Claimed behaviour.
+> 4. Requirement trace or existing method contract.
+> 5. Suggested test code, where appropriate.
+> 6. Assertion quality.
+> 7. Potential weakness.
+> 8. Recommendation: Accept, Modify or Reject.
+> 9. Reason for the recommendation.
+>
+> **4. Critical evaluation rules**
+>
+> Pay particular attention to:
+>
+> - Weak assertions, such as checking only that an object is not `None`.
+> - Whether rejected operations leave stored state unchanged.
+> - Correct exception expectations.
+> - Invented business rules.
+> - Duplicate test scenarios.
+> - Excessive mocking and private implementation details.
+> - Unnecessary dependencies.
+> - Tests that repeat existing coverage.
+> - Tests that pass without proving the expected behaviour.
+>
+> For rejection scenarios, consider checking appointment status, stored records and cancellation history where required by the contract.
+>
+> **5. Restrictions**
+>
+> - Do not modify project files.
+> - Do not overwrite existing tests.
+> - Do not execute code that changes project data.
+> - Do not automatically accept your own suggestions.
+> - Do not invent assignment requirements.
+> - Distinguish existing coverage from genuinely new coverage.
+>
+> **6. Expected output**
+>
+> Present your findings in a table with these columns:
+>
+> | Candidate | Idea | Claimed behaviour | Requirement trace | Assertion quality | Human assessment | Decision | Reason | Suggested test reference | Verification status |
+> |---|---|---|---|---|---|---|---|---|---|
+>
+> For verification status, use:
+>
+> - Not executed
+> - Passed
+> - Failed
+> - Not applicable (rejected candidate)
+>
+> Do not claim a test passed unless it was actually executed.
+>
+> Finally, suggest reflection points addressing:
+>
+> 1. Which Copilot-generated test looked convincing but was weak?
+> 2. How could that test be strengthened?
+> 3. What does the current test suite still not prove?
+>
+> I will independently review your suggestions before deciding which tests to accept, modify or reject.
+>
+> **Provide your analysis and candidate suggestions only. Do not edit or create any files.**
 
 ## I Weak Copilot Test Reflection
 
-Which Copilot-generated test looked convincing but was weak? [response]
-Why was it weak? [response]
-How did you strengthen it? [response]
-Accepted / modified / rejected test decisions and evidence: [link actual decisions in H]
+**Which Copilot-generated test looked convincing but was weak?**
+
+The repeated-cancellation test initially looked convincing because it checked whether a `ValueError` was raised when cancelling an already cancelled appointment. However, this did not prove that the appointment's status and cancellation history remained unchanged.
+
+**Why was it weak?**
+
+It checked only the expected exception. It did not verify whether the appointment remained correctly stored or whether an extra cancellation-history entry had been created.
+
+**How did you strengthen it?**
+
+I strengthened the test by checking the appointment's identity in the data store, its `CANCELLED` status, the stored appointment list and the cancellation history before and after the second cancellation attempt.
+
+**Accepted / modified / rejected test decisions and evidence:**
+
+The repeated-cancellation test was modified and strengthened. Other useful Copilot suggestions, including checking booking conflicts and allowing rebooking after cancellation, were accepted or improved. Whitespace-only ID validation and distinguishing unknown from blank appointment IDs were also modified to check the expected exceptions and preserve existing records.
+
+The suggestion to test practitioner appointment listing was rejected or deferred because it belongs to Stage 9 and is not implemented in the current stage.
+
+The modified repeated-cancellation test is available in `project/tests/test_services.py` as `test_repeated_service_cancellation_preserves_state()`.
+
+The reported full test execution result was 28 passed and 0 failed.
 
 ## J Regression Run
 
@@ -415,16 +527,18 @@ A weak assertion is one that doesn't prove anything or doesn't measure a change 
 Assertation is used to make sure something is in a particular state, such that a newly-created booking is scheduled.
 
 9. What is the appropriate role of GitHub Copilot as a test assistant?
-(Nothing. I don't want to use it.)
+GitHub Copilot can assist with suggesting test cases, identifying weaknesses in assertions and improving test coverage. However, its suggestions must be checked against the actual requirements and code. Developers should accept, modify or reject suggestions based on evidence and remain responsible for the final tests and verification.
 
 10. What is the Stage 7 engineering rule?
+Do not trust a test just because it passes. Make sure it checks the actual expected behaviour.
 
+For example, A strong test should verify the real outcome, such as whether a cancelled appointment remains stored and its cancellation history is retained.
 
 ## O Stage Completion
 
-Tested Stage 7 main SHA: [complete]
-Full-suite result: All tests complete
-Unresolved defects and effect on baseline: None
-Clean working tree and integration evidence: [complete]
-Stage 8 handover status: complete; no Stage 8 work assigned
-All tutorial/formative responses and traceability/Copilot decisions complete: Yes
+- **Tested Stage 7 main SHA:** `1a6dfee`
+- **Full-suite result:** 28 passed, 0 failed
+- **Unresolved defects and effect on baseline:** None identified
+- **Clean working tree and integration evidence:** Pending final commit and verification
+- **Stage 8 handover status:** Complete; no Stage 8 work assigned
+- **All tutorial/formative responses and traceability/Copilot decisions complete:** Yes

@@ -197,27 +197,48 @@ Oral/video recording/accessibility arrangements: [response]
 Remaining administration or release dependency: [response]
 
 
+
 ## M Formative questions
 
-1. What is a release candidate? [response]
+1. **What is a release candidate?**
 
-2. What is feature freeze and why is it used? [response]
+   A release candidate is a version of software that is almost ready for release and is tested to ensure it is stable.
 
-3. What is regression testing in a release context? [response]
+2. **What is feature freeze and why is it used?**
 
-4. What is a known limitation? [response]
+   Feature freeze means no new features are added. It allows the team to focus on testing, fixing bugs and preparing for release.
 
-5. What is technical debt? [response]
+3. **What is regression testing in a release context?**
 
-6. What are release notes? [response]
+   Regression testing checks that new changes or bug fixes have not affected existing working features.
 
-7. What is software maintenance? [response]
+4. **What is a known limitation?**
 
-8. What is the purpose of the individual demonstration/viva? [response]
+   A known limitation is an identified problem or restriction in the software that has not yet been fixed.
 
-9. What should the final responsible-AI check establish before release? [response]
+5. **What is technical debt?**
 
-10. What is the main course conclusion about AI and the role of the software engineer? [response]
+   Technical debt is future work caused by choosing a quick or less effective solution instead of a better long-term solution.
+
+6. **What are release notes?**
+
+   Release notes are documents that describe changes in a software release, including new features, bug fixes and known limitations.
+
+7. **What is software maintenance?**
+
+   Software maintenance involves updating software after release to fix problems, improve performance, maintain security and add features.
+
+8. **What is the purpose of the individual demonstration/viva?**
+
+   It checks whether each student understands the project, can explain their contribution and can answer questions about their work.
+
+9. **What should the final responsible-AI check establish before release?**
+
+   It should confirm that AI-generated work has been reviewed and verified by humans, and that the software is safe, reliable and properly tested.
+
+10. **What is the main course conclusion about AI and the role of the software engineer?**
+
+    AI can assist with software development, but engineers remain responsible for checking, verifying and taking responsibility for the final work.
 
 
 ## N Reflection viva and handover
