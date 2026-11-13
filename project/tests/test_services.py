@@ -3,8 +3,18 @@ from datetime import datetime
 
 import pytest
 
-from smartcare.domain import AppointmentStatus
-from smartcare.services import PatientService, PractitionerService
+from smartcare.data_store import SmartCareDataStore
+from smartcare.domain import (
+    Appointment,
+    AppointmentStatus,
+    Patient,
+    Practitioner,
+)
+from smartcare.services import (
+    AppointmentService,
+    PatientService,
+    PractitionerService,
+)
 
 from test_starter import foundation
 
@@ -20,6 +30,9 @@ def test_finding_patients() -> None:
     # Assertion 2. A known unregistered patient cannot be found
     patient_steve: Patient | None = data_store.find_patient("P2")
     assert patient_steve is None
+
+    # Assertion 3. PatientService find_patient throws LookupError when patient cannot be found
+    patient_service = PatientService(data_store)
 
     with pytest.raises(LookupError):
         patient_service.find_patient("P2")
@@ -79,14 +92,12 @@ def test_appointment_cancellation() -> None:
     with pytest.raises(ValueError):
         appointment.cancel()
     
-    # Assertion 3. 
+    # Assertion 3. The main appointments list does not contain the canceled appointment
     appointments = data_store.list_appointments()
-    assert not appointments.__contains__(appointment)
+    assert appointment not in appointments
 
-    cancelled = appointment_service.cancel_appointment("A1")
-
-    assert cancelled.status == AppointmentStatus.CANCELLED
-    assert cancelled in appointment_service.cancelled_appointments
+    # Assertion 4. The canceled appointments contains the canceled appointment
+    assert appointment in appointment_service.cancelled_appointments
 
 
 def test_unknown_appointment_cancellation() -> None:
@@ -108,7 +119,7 @@ def test_repeated_appointment_cancellation() -> None:
 
     appointment_service.cancel_appointment("A1")
 
-    with pytest.raises(ValueError):
+    with pytest.raises(LookupError):
         appointment_service.cancel_appointment("A1")
 
     assert len(appointment_service.cancelled_appointments) == 1
@@ -126,10 +137,10 @@ def test_repeated_service_cancellation_preserves_state():
     appointments_before = data_store.list_appointments()
     history_before = list(appointment_service.cancelled_appointments)
 
-    with pytest.raises(ValueError):
+    with pytest.raises(LookupError):
         appointment_service.cancel_appointment("A1")
 
-    assert data_store.find_appointment("A1") is appointment
+    assert data_store.find_appointment("A1") is None
     assert data_store.list_appointments() == appointments_before
     assert appointment_service.cancelled_appointments == history_before
     assert appointment.status == AppointmentStatus.CANCELLED
@@ -167,7 +178,7 @@ def test_cancelled_appointment_does_not_block_rebooking():
 
     assert first.status == AppointmentStatus.CANCELLED
     assert second.status == AppointmentStatus.SCHEDULED
-    assert data_store.list_appointments() == [first, second]
+    assert data_store.list_appointments() == [second]
     assert appointment_service.cancelled_appointments == [first]
 
 

@@ -194,7 +194,7 @@ class AppointmentService:
 
 		# Step 3. If given, further filter appointments by status
 		if status is not None:
-			if not list(AppointmentStatus).__contains__(status):
+			if status not in list(AppointmentStatus):
 				raise ValueError(f"\'status\' is not a valid status")
 
 			# Filter method is used because we do not want to create another list

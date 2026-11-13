@@ -89,11 +89,12 @@ def run_menu() -> None:
     # Create options dictionary
     options: dict[int, str] = {
         1: "Register patient",
-        2: "Find patient",
-        3: "Book appointment",
-        4: "Cancel appointment",
-        5: "List practitioner\'s appointments",
-        6: "Exit"
+        2: "Register practitioner",
+        3: "Find patient",
+        4: "Book appointment",
+        5: "Cancel appointment",
+        6: "List practitioner\'s appointments",
+        7: "Exit"
     }
 
     # Print welcome message
@@ -119,7 +120,7 @@ def run_menu() -> None:
         try:
             user_input_num: int = int(user_input)
 
-            if user_input_num >= 1 and user_input_num <= 6:
+            if user_input_num >= 1 and user_input_num <= 7:
                 print(f"\nSelected \'{options[user_input_num]}\'")
 
             if user_input_num == 1:
@@ -141,6 +142,26 @@ def run_menu() -> None:
                         print(f"Please try again.")
 
             elif user_input_num == 2:
+                getting_practitoner_details: bool = True
+                while getting_practitoner_details:
+                    practitioner_name: str = input("\nEnter practitioner name: ")
+                    practitioner_specialty: str = input("\nEnter practitioner specialty: ")
+
+                    try:
+                        practitioner_id: str = random_id()
+                        practitioners.register_practitioner(practitioner_id, practitioner_name, practitioner_specialty)
+                
+                        getting_practitoner_details = False
+                
+                        print("\nPatient registered:")
+                        print(f"\tID #{practitioner_id}")
+                        print(f"\tName: {practitioner_name}")
+                        print(f"\tSpeciality: {practitioner_specialty}")
+                    except ValueError:
+                        print(f"Name/specialty cannot be blank or only whitespace.")
+                        print(f"Please try again.")
+
+            elif user_input_num == 3:
                 patient_name: str = input("\nEnter patient name: ")
 
                 found_patients: list[Patient] = []
@@ -158,7 +179,7 @@ def run_menu() -> None:
                         print(f"\tName: {found_patient.name}")
                         print()
 
-            elif user_input_num == 3:
+            elif user_input_num == 4:
                 # Get all practitioners and patients
                 all_practitioners: list[Practitioner] = data_store.list_practitioners()
                 all_patients: list[Patient] = data_store.list_patients()
@@ -259,8 +280,7 @@ def run_menu() -> None:
                         print("There is already an appointment with that time booked.")
                         print("Please try again.")
 
-
-            elif user_input_num == 4:
+            elif user_input_num == 5:
                 all_appointments: list[Appointment] = data_store.list_appointments()
 
                 scheduled_appointments: list[Appointment] = [appt for appt in all_appointments if appt.status == AppointmentStatus.SCHEDULED]
@@ -294,7 +314,7 @@ def run_menu() -> None:
                         print("That is not a valid appointment ID")
                         print("Please try again")
 
-            elif user_input_num == 5:
+            elif user_input_num == 6:
                 all_practitioners: list[Practitioner] = data_store.list_practitioners()
                 # This also includes canceled appointments
                 all_appointments: list[Appointment] = data_store.list_appointments() + appointments.cancelled_appointments
@@ -339,7 +359,7 @@ def run_menu() -> None:
                         print(f"\tStatus: {appt.status.name}")
                         print()
 
-            elif user_input_num == 6:
+            elif user_input_num == 7:
                 exit = True
 
             else:
