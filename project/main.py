@@ -1,7 +1,7 @@
 """Run the supplied demo or the Stage 9 interactive menu."""
 
 
-print("Hello World!")
+#print("Hello World!")
 
 import argparse
 

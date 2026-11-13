@@ -11,7 +11,7 @@ Members/cohorts:
     Bailey (Sparkachu), UG
     Sushil (Sushil-Bhattarai-101), UG
 Record owner / contribution links for each member:
-I (Kael, u3334502) am the sole contributer for this stage as the changes were installed on my computer.
+I (Kael) am the sole contributer for this stage as the changes were installed on my computer.
 
 Use concise results and accessible artefact links rather than copying entire logs. Keep human-first entries before consulting GitHub Copilot. Link shared evidence once; do not repeat it across sections. No entries below are specimen answers or claimed results.
 
@@ -241,8 +241,8 @@ Accepted, proper enum usage and removal of magic strings / behaviour preserved
 ## I. Git, human review and integration
 
 Issues for both defects / refactor scope and owners:
-F8-01: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/14 / `SmartCareDataStore` in `data_store.py` / SomeKidWithCode (Kael (u3334502))
-F8-02: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/15 / `AppointmentService` in `services.py` / SomeKidWithCode (Kael (u3334502))
+F8-01: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/14 / `SmartCareDataStore` in `data_store.py` / SomeKidWithCode (Kael)
+F8-02: https://github.com/SomeKidWithCode/ST-Assignment-3/issues/15 / `AppointmentService` in `services.py` / SomeKidWithCode (Kael)
 Branch / prepared, repair and refactor checkpoints: [link B/C/D/H]
 PR link and another member's reviewer identity: [complete]
 Key human feedback, difference from Copilot findings and response/outcome: [complete]
