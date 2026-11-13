@@ -137,13 +137,13 @@ Record meaningful required use, not every trivial completion. Repeat per signifi
 Repeat per member. Include only categories that describe actual work; write not applicable where appropriate. Pairing or mentoring can be supported by a short corroborated note.
 
 - Member: Ash
-- Implementation: [work and evidence]
-- Testing: [work and evidence]
-- Review: [work and evidence]
+- Implementation: NA
+- Testing: NA
+- Review: Stage 7
 - Issue refinement: Created issue for FR-06
-- Design and responsibility discussion: [work and evidence]
-- Debugging or integration: [work and evidence]
-- Documentation or team support: Most of stage 6, as well as organisation
+- Design and responsibility discussion: NA
+- Debugging or integration: NA
+- Documentation or team support: Stage 6 (sections A, B, C, D, E and F), stage 9 (A, E) as well as general group organisation and coordination. 
 
 - Member: Kael
 - Implementation: [work and evidence]
@@ -155,13 +155,13 @@ Repeat per member. Include only categories that describe actual work; write not 
 - Documentation or team support: [work and evidence]
 
 - Member: Sushil
-- Implementation: [work and evidence]
-- Testing: [work and evidence]
-- Review: [work and evidence]
-- Issue refinement: [work and evidence]
-- Design and responsibility discussion: [work and evidence]
-- Debugging or integration: [work and evidence]
-- Documentation or team support: [work and evidence]
+- Implementation: Not applicable. My main contribution focused on testing, review and documentation rather than direct software implementation.
+- Testing: Completed Stage 7 testing activities, Parts B–I, including test design, test execution, requirement traceability and evaluation of test coverage. Added and improved tests in project/tests/test_domain.py and project/tests/test_services.py.
+- Review: Reviewed test results and Copilot-generated test suggestions. Evaluated their usefulness and identified weak assertions that needed improvement.
+- Issue refinement: Not applicable.
+- Design and responsibility discussion: Reviewed testing requirements and considered whether the tests correctly represented the expected system behaviour.
+- Debugging or integration: Ran the full pytest suite and verified the recorded result of 28 passed and 0 failed.
+- Documentation or team support: Completed Stage 7 documentation and evidence for Parts B–I and Stage 12, Part M. Prepared testing explanations, reflections and formative question answers to support the project records.
 
 - Member: Bailey
 - Implementation: [work and evidence]
