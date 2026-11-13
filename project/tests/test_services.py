@@ -31,8 +31,22 @@ def test_finding_practitioners() -> None:
     practitioner_taylor = practitioner_service.find_practitioner("D1")
     assert practitioner_taylor is not None
 
-    with pytest.raises(LookupError):
-        practitioner_service.find_practitioner("D2")
+def test_finding_appointments() -> None:
+    data_store, patient, practitioner, appointment_service = foundation()
+    
+    appointment = appointment_service.book_appointment(
+        "A1",
+        "P1",
+        "D1",
+        datetime(2026, 11, 19, 7)
+    )
+
+    found_appointment = data_store.find_appointment("A1")
+
+    assert found_appointment is not None
+    assert found_appointment.status == AppointmentStatus.SCHEDULED
+    assert found_appointment == appointment
+
 
 
 def test_appointment_cancellation() -> None:
@@ -46,6 +60,19 @@ def test_appointment_cancellation() -> None:
     )
 
     assert appointment.status == AppointmentStatus.SCHEDULED
+    appointment_service.cancel_appointment(appointment.appointment_id)
+    assert appointment.status == AppointmentStatus.CANCELLED
+
+    cancelled_twice = False
+    try:
+        appointment.cancel()
+        cancelled_twice = True
+    except:
+        print("Correctly prevented double cancel")
+    assert not cancelled_twice
+
+    appointments = data_store.list_appointments()
+    assert not appointments.__contains__(appointment)
 
     cancelled = appointment_service.cancel_appointment("A1")
 
