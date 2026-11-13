@@ -29,8 +29,6 @@ Tutorial activity 2 and actual readiness matrix. Add exact requirement/acceptanc
 | ----------------------------------------------------- | ---------- | --------------------- | ---------- | ----------- | ---------- |
 | Cancellation history works                            | [response] | [response]            | [response] | [response]  | [response] |
 | Architecture responsibilities are appropriate         | [response] | [response]            | [response] | [response]  | [response] |
-| Rescheduling is safe — PG only                        | [response] | [response]            | [response] | [response]  | [response] |
-| AI use is responsible — common recheck / PG assurance | [response] | [response]            | [response] | [response]  | [response] |
 | System is maintainable                                | [response] | [response]            | [response] | [response]  | [response] |
 | FR-01–03 register/find and validation                 | [response] | [response]            | [response] | [response]  | [response] |
 | FR-04–05 booking/conflict rules                       | [response] | [response]            | [response] | [response]  | [response] |
@@ -38,7 +36,7 @@ Tutorial activity 2 and actual readiness matrix. Add exact requirement/acceptanc
 | FR-09 and QRY/FP listing/filter/order/purity          | [response] | [response]            | [response] | [response]  | [response] |
 | UI full console sequence and error recovery           | [response] | [response]            | [response] | [response]  | [response] |
 | Session-only scope / FR-10 retired                    | [response] | [response]            | [response] | [response]  | [response] |
-| PG RES and assurance integration                      | [response] | [response]            | [response] | [response]  | [response] |
+
 
 
 ## C Full regression results
@@ -55,42 +53,40 @@ Remaining failure / limitation: [response]
 
 ## D Console and end to end demonstration
 
-| Demo step | Synthetic setup/input | Expected requirement | Observed result | Evidence/link |
-|---|---|---|---|---|
-| Problem and stakeholders | [response] | [response] | [response] | [response] |
-| Register and find Patient and two Practitioners | [response] | [response] | [response] | [response] |
-| Valid booking | [response] | [response] | [response] | [response] |
-| Same practitioner exact-time conflict rejected | [response] | [response] | [response] | [response] |
-| Different practitioner same time allowed | [response] | [response] | [response] | [response] |
-| Cancel SCHEDULED and retain/find CANCELLED object | [response] | [response] | [response] | [response] |
-| Invalid/repeated cancellation rejected | [response] | [response] | [response] | [response] |
-| Default all-status listing | [response] | [response] | [response] | [response] |
-| Explicit filtering / empty vs unknown / deterministic order | [response] | [response] | [response] | [response] |
-| Invalid date/status/menu/lookup recovery and continued operation | [response] | [response] | [response] | [response] |
-| Session-only limitation and normal exit | [response] | [response] | [response] | [response] |
-| One meaningful requirement-linked pytest test explained | [response] | [response] | [response] | [response] |
-| Architecture and one actual AI decision / known limitation | [response] | [response] | [response] | [response] |
-| PG reschedule identity/participants/time and no-op | [response] | [response] | [response] | [response] |
-| PG conflict/invalid status/failure non-mutation | [response] | [response] | [response] | [response] |
-| PG old slot / current lookup/list ordering / assurance risks | [response] | [response] | [response] | [response] |
+| Demo step                                                        | Synthetic setup/input | Expected requirement | Observed result | Evidence/link |
+| ---------------------------------------------------------------- | --------------------- | -------------------- | --------------- | ------------- |
+| Problem and stakeholders                                         | [response]            | [response]           | [response]      | [response]    |
+| Register and find Patient and two Practitioners                  | [response]            | [response]           | [response]      | [response]    |
+| Valid booking                                                    | [response]            | [response]           | [response]      | [response]    |
+| Same practitioner exact-time conflict rejected                   | [response]            | [response]           | [response]      | [response]    |
+| Different practitioner same time allowed                         | [response]            | [response]           | [response]      | [response]    |
+| Cancel SCHEDULED and retain/find CANCELLED object                | [response]            | [response]           | [response]      | [response]    |
+| Invalid/repeated cancellation rejected                           | [response]            | [response]           | [response]      | [response]    |
+| Default all-status listing                                       | [response]            | [response]           | [response]      | [response]    |
+| Explicit filtering / empty vs unknown / deterministic order      | [response]            | [response]           | [response]      | [response]    |
+| Invalid date/status/menu/lookup recovery and continued operation | [response]            | [response]           | [response]      | [response]    |
+| Session-only limitation and normal exit                          | [response]            | [response]           | [response]      | [response]    |
+| One meaningful requirement-linked pytest test explained          | [response]            | [response]           | [response]      | [response]    |
+| Architecture and one actual AI decision / known limitation       | [response]            | [response]           | [response]      | [response]    |
+
 Stable demo owner / fresh process / command: [response]
 PG demonstrations through service/tests or not applicable: [response]
 
 
 ## E Final code quality and AI review
 
-| Review area | Code/evidence location | Finding or no finding | Correction/no change and recheck |
-|---|---|---|---|
-| OOP responsibilities and pure-query boundaries | [response] | [response] | [response] |
-| PascalCase and snake_case naming | [response] | [response] | [response] |
-| Useful type hints and meaningful docstrings | [response] | [response] | [response] |
-| Four-space indentation and imports/layout | [response] | [response] | [response] |
-| Focused methods / duplication / dead or commented code | [response] | [response] | [response] |
-| Globals / leakage / unnecessary inheritance or frameworks | [response] | [response] | [response] |
-| No SQLite/persistence/repository ABCs/speculative features | [response] | [response] | [response] |
-| Synthetic data / secrets / dependencies / provenance | [response] | [response] | [response] |
-| Significant common Copilot contributions and human verification | [response] | [response] | [response] |
-| PG plan/diff/test approvals and Stage 11 VERIFY/TRUST | [response] | [response] | [response] |
+| Review area                                                     | Code/evidence location | Finding or no finding | Correction/no change and recheck |
+| --------------------------------------------------------------- | ---------------------- | --------------------- | -------------------------------- |
+| OOP responsibilities and pure-query boundaries                  | [response]             | [response]            | [response]                       |
+| PascalCase and snake_case naming                                | [response]             | [response]            | [response]                       |
+| Useful type hints and meaningful docstrings                     | [response]             | [response]            | [response]                       |
+| Four-space indentation and imports/layout                       | [response]             | [response]            | [response]                       |
+| Focused methods / duplication / dead or commented code          | [response]             | [response]            | [response]                       |
+| Globals / leakage / unnecessary inheritance or frameworks       | [response]             | [response]            | [response]                       |
+| No SQLite/persistence/repository ABCs/speculative features      | [response]             | [response]            | [response]                       |
+| Synthetic data / secrets / dependencies / provenance            | [response]             | [response]            | [response]                       |
+| Significant common Copilot contributions and human verification | [response]             | [response]            | [response]                       |
+
 
 | AI claim | Affected requirement/code | Human check | Accept/Modify/Reject and reason | Actual outcome/action or no change |
 |---|---|---|---|---|
@@ -255,24 +251,23 @@ Continue doing — engineering and AI use: [response]
 What worked / caused rework / future delivery improvement: [response]
 One paragraph — If AI can write code why do we still need software engineers: [response]
 
-| Preparation item | Own explanation and evidence link |
-|---|---|
-| Problem and stakeholders | [response] |
-| Two requirements and acceptance criteria | [response] |
-| Domain model and architecture | [response] |
-| Design trade-off | [response] |
-| Meaningful test and its limits / 100 percent coverage | [response] |
-| Diagnosed defect and verification | [response] |
-| Shared store and session-state/query responsibilities | [response] |
-| What would break if session-state lookup/query responsibilities changed? | [response] |
-| Why cancellation is domain behaviour / conflict coordination is service behaviour | [response] |
-| FR-07 retained history test | [response] |
-| Actual AI change rejected/modified or honestly accepted with verification | [response] |
-| Unresolved limitation / future production work | [response] |
-| Personal implementation contribution | [response] |
-| Personal test/review/design/integration contribution | [response] |
-| PG agentic change and rescheduling verification | [response] |
-| PG responsible-AI risk/remediation or supported no finding | [response] |
+| Preparation item                                                                  | Own explanation and evidence link |
+| --------------------------------------------------------------------------------- | --------------------------------- |
+| Problem and stakeholders                                                          | [response]                        |
+| Two requirements and acceptance criteria                                          | [response]                        |
+| Domain model and architecture                                                     | [response]                        |
+| Design trade-off                                                                  | [response]                        |
+| Meaningful test and its limits / 100 percent coverage                             | [response]                        |
+| Diagnosed defect and verification                                                 | [response]                        |
+| Shared store and session-state/query responsibilities                             | [response]                        |
+| What would break if session-state lookup/query responsibilities changed?          | [response]                        |
+| Why cancellation is domain behaviour / conflict coordination is service behaviour | [response]                        |
+| FR-07 retained history test                                                       | [response]                        |
+| Actual AI change rejected/modified or honestly accepted with verification         | [response]                        |
+| Unresolved limitation / future production work                                    | [response]                        |
+| Personal implementation contribution                                              | [response]                        |
+| Personal test/review/design/integration contribution                              | [response]                        |
+
 
 Optional bounded-change practice only: validation rule, focused test, safe error-message change, explicit-input query or agreed status rule with test. Explain expected impact before editing, make a small change, run the test, and identify evidence to inspect if unsure. No live AI unless explicitly permitted. Preserve the submitted candidate.
 
